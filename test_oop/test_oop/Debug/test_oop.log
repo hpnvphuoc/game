@@ -1,0 +1,6 @@
+﻿  ball.cpp
+  main.cpp
+c:\users\admin\source\repos\test_oop\test_oop\main.cpp(4): warning C4326: return type of 'main' should be 'int' instead of 'void'
+  object.cpp
+  Generating Code...
+  test_oop.vcxproj -> C:\Users\Admin\source\repos\test_oop\Debug\test_oop.exe

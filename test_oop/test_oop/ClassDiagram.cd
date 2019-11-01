@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ball">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAogAEAAABIA2AAAAAAAAAAAAIQAAgAxEBAAAAAAA=</HashCode>
+      <FileName>ball.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="bar">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <InheritanceLine Type="object" ManuallyRouted="true">
+      <Path>
+        <Point X="1.25" Y="0.5" />
+        <Point X="1.25" Y="0.125" />
+        <Point X="6.167" Y="0.125" />
+        <Point X="6.167" Y="4.098" />
+        <Point X="7.25" Y="4.098" />
+        <Point X="7.25" Y="3.723" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AQAAKAAAAAAAAAyAAAAAAAAAAAAIQAAgABAAAAAAAAA=</HashCode>
+      <FileName>bar.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="boardgame">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAIBAAAAAAAAyAAAAAAAgAAAAIQAAgAAAAAAAAAAA=</HashCode>
+      <FileName>boardgame.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game">
+    <Position X="7.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAEAAAAABAAAAAAAAAAAAAAAAIAAAAAAAAQAAA=</HashCode>
+      <FileName>game.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="object">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAIAAAACAAAAiAAAAAAAAAAAAIQAAAAEABAAAAAQA=</HashCode>
+      <FileName>object.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="paddle">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAIAABAAAAAAyAAAAAAAAAAAAIQAAgAAAAAkAAAAA=</HashCode>
+      <FileName>paddle.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="player">
+    <Position X="2.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAIAAAAAAAAAyAAAAIAAAAAAAIQAAhAAAAAAAAAAA=</HashCode>
+      <FileName>player.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
