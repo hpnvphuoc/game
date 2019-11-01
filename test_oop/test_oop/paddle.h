@@ -19,8 +19,9 @@ public:
 	string getObjectName();
 	string getImglink();
 
-
+	// di chuyen len
 	void moveUp();
+	// di chuyen xuong
 	void moveDown();
 };
 

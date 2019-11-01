@@ -19,6 +19,7 @@ pos paddle::getPosition()
 
 void paddle::move(vector<object*> list)
 {
+	// di chuyen len xuong right paddle
 	if (Keyboard::isKeyPressed(Keyboard::Up)) {
 		if (this->getObjectName() == "rightpaddle") {
 			this->moveUp();
@@ -29,6 +30,7 @@ void paddle::move(vector<object*> list)
 			this->moveDown();
 		}
 	};
+	// di chuyen len xuong left paddle
 	if (Keyboard::isKeyPressed(Keyboard::W)) {
 		if (this->getObjectName() == "leftpaddle") {
 			this->moveUp();

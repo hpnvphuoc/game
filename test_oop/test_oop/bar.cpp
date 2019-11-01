@@ -33,6 +33,7 @@ float bar::getWeight()
 
 string bar::getObjectName()
 {
+	//lay obj name dua tren igmlink
 	string tempObjName="";
 	bool checkName = false;
 	for (int i = 0; i < this->imgLink.length(); i++) {

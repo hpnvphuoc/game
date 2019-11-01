@@ -11,7 +11,7 @@ public:
 	float getWeight();
 	string getObjectName();
 	string getImglink();
-
+	// khoi tao thanh
 	bar(int x, int y, int height, int weight, string imgLink);
 	bar();
 	~bar();

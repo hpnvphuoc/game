@@ -22,13 +22,15 @@ void player::move(vector<object*> list)
 {
 	int n = list.size();
 	for (int i = 0; i < n; i++) {
+		// ben trai ghi diem
 		if (list[i]->getObjectName() == "ball") {
 			if (this->getObjectName() == "Player_Left"
-				&& list[i]->getPosition().x > 1032-6 ){
+				&& list[i]->getPosition().x > 1032){
 				this->Score();
 			}
+			// ben phai ghi diem
 			if (this->getObjectName() == "Player_Right"
-				&& list[i]->getPosition().x < 0+6 ) {
+				&& list[i]->getPosition().x < 0 ) {
 				this->Score();
 			}
 		}

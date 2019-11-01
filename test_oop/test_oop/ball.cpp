@@ -9,25 +9,41 @@ ball::ball()
 
 void ball::reset()
 {
+	//gan vi tri trai banh o giua ban
 	p.x = 1032 / 2;
 	p.y = 684 / 2;
+	// gan lai duong thang truoc khi thua
 	b = p.y - a * p.x;
-	v = 5;
+	v = 7*v/abs(v);// gan lai toc do ban dau 7
 }
 
-string ball::CheckScore()
+void ball::CheckScore(vector<object *>list)
 {
+	// ham tinh xem ghi diem chua
+	int n = list.size();
+	// neu trai banh qua bien ben trai
 	if (this->p.x < 0) {
+		for (int i = 0; i < n; i++) {
+				if (list[i]->getObjectName() == "Player_Right") {
+					list[i]->move(list); //ghi diem
+				}
+			}
 		this->reset();
 	}
+	// neu trai banh ben bien ben phai
 	if (this->p.x > 1032) {
+		for (int i = 0; i < n; i++) {
+			if (list[i]->getObjectName() == "Player_Left") {
+				list[i]->move(list);// ghi diem
+			}
+		}
 		this->reset();
 	}
-	return "";
 }
 
 ball::ball(int x, int y, int r, float a, float b, int direction, float v,float height,float weight, string imgLink)
 {
+	// khoi tao
 	this->imgLink = imgLink;
 	p.x = x;
 	p.y = y;
@@ -48,6 +64,7 @@ pos ball::getPosition()
 
 void ball::move(vector<object *>list)
 {
+	// xet va cham trai phai tren duoi
 	p.x = p.x + v;
 	p.y = a * p.x + b;
 	int n = list.size();
@@ -66,7 +83,7 @@ void ball::move(vector<object *>list)
 			conlisionBottombar(list[i]->getPosition(), list[i]->getHeight(), list[i]->getWeight());
 		}
 	}
-	this->CheckScore();
+	this->CheckScore(list);
 	
 }
 

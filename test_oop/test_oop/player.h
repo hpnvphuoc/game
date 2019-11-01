@@ -17,7 +17,7 @@ public:
 	float getWeight();
 	string getObjectName();
 	string getImglink();
-
+	// ham ghi diem
 	void Score();
 };
 

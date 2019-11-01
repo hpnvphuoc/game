@@ -1,0 +1,37 @@
+﻿  ball.cpp
+E:\HocTap\Code\game\test_oop\test_oop\ball.h(5,9): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+E:\HocTap\Code\game\test_oop\test_oop\ball.cpp(23,21): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+E:\HocTap\Code\game\test_oop\test_oop\ball.cpp(48,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+E:\HocTap\Code\game\test_oop\test_oop\ball.cpp(49,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+E:\HocTap\Code\game\test_oop\test_oop\ball.cpp(70,21): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+E:\HocTap\Code\game\test_oop\test_oop\ball.cpp(113,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+E:\HocTap\Code\game\test_oop\test_oop\ball.cpp(116,9): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\HocTap\Code\game\test_oop\test_oop\ball.cpp(123,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+E:\HocTap\Code\game\test_oop\test_oop\ball.cpp(126,9): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\HocTap\Code\game\test_oop\test_oop\ball.cpp(134,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+E:\HocTap\Code\game\test_oop\test_oop\ball.cpp(137,11): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\HocTap\Code\game\test_oop\test_oop\ball.cpp(147,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  bar.cpp
+E:\HocTap\Code\game\test_oop\test_oop\ball.cpp(150,11): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\HocTap\Code\game\test_oop\test_oop\bar.cpp(60,14): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+E:\HocTap\Code\game\test_oop\test_oop\bar.cpp(61,14): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+E:\HocTap\Code\game\test_oop\test_oop\bar.cpp(62,17): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  boardgame.cpp
+E:\HocTap\Code\game\test_oop\test_oop\bar.cpp(63,17): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+E:\HocTap\Code\game\test_oop\test_oop\boardgame.cpp(37,14): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  game.cpp
+E:\HocTap\Code\game\test_oop\test_oop\boardgame.cpp(38,14): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+E:\HocTap\Code\game\test_oop\test_oop\ball.h(5,9): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  info.cpp
+E:\HocTap\Code\game\test_oop\test_oop\game.h(3,10): fatal error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  main.cpp
+E:\HocTap\Code\game\test_oop\test_oop\info.h(2,10): fatal error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+E:\HocTap\Code\game\test_oop\test_oop\ball.h(5,9): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  menu.cpp
+E:\HocTap\Code\game\test_oop\test_oop\game.h(3,10): fatal error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  object.cpp
+  paddle.cpp
+E:\HocTap\Code\game\test_oop\test_oop\Menu.h(2,10): fatal error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  player.cpp
+E:\HocTap\Code\game\test_oop\test_oop\paddle.h(3,10): fatal error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+E:\HocTap\Code\game\test_oop\test_oop\player.cpp(23,21): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data

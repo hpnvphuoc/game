@@ -4,6 +4,7 @@
 
 void game::init()
 {
+	// khoi tao cac obj nhu ball paddle bar , ..
 	int n = 10;
 	object *temp = NULL;
 	for (int i = 0; i < n; i++) {
@@ -14,7 +15,7 @@ void game::init()
 			this->objArr.push_back(temp);
 			break;
 		case 1:
-			temp = new ball(1032 / 2, 684 / 2, 10, 0.32, 0, 1, 5, 20, 20, "images/ball.png");
+			temp = new player(632, 80, 72, 72, 0, "images/0.png");
 			this->objArr.push_back(temp);
 			break;
 		case 2:
@@ -46,14 +47,15 @@ void game::init()
 			this->objArr.push_back(temp);
 			break;
 		case 9:
-			temp = new player(632, 80, 72, 72, 0, "images/0.png");
+			temp = new ball(1032 / 2, 684 / 2, 10, 0.32, 0, 1,7, 20, 20, "images/ball.png");
 			this->objArr.push_back(temp);
 			break;
 		default:
 			break;
 		}
 	}
-	
+	//khoi tao man hinh menu defaul = -1
+	this->checkScreen = -1;
 }
 
 void game::run()
@@ -61,9 +63,9 @@ void game::run()
 	RenderWindow window(VideoMode(1032	,684), "Pong Game!");
 	Clock clock;
 	float timer = 0, delay = 0.01;
+
 	while (window.isOpen())
 	{
-
 		////// draw  ///////
 		Event e;
 		while (window.pollEvent(e))
@@ -71,14 +73,27 @@ void game::run()
 			if (e.type == Event::Closed)
 				window.close();
 		}
-
-		float time = clock.getElapsedTime().asSeconds();
-		clock.restart();
-		timer += time;
-		if (timer > delay) {
-			this->objMove();
+		// Man hinh menu chinh
+		if (checkScreen == -1) {
+			this->main_Menu.drawMenuList(window);
+			this->checkScreen = this->main_Menu.Optional_choose();
 		}
-		this->render(window);
+		// chon play
+		if (checkScreen == 0) {
+			float time = clock.getElapsedTime().asSeconds();
+			clock.restart();
+			timer += time;
+			if (timer > delay) {
+				this->objMove();
+			}
+			this->render(window);
+
+		}
+		// chon info
+		if (this->checkScreen == 1) {
+			about_info.drawInfo(window);
+			checkScreen = about_info.exit_info();
+		}
 	}
 }
 
@@ -92,6 +107,7 @@ void game::render(RenderWindow& window)
 		pos tempPos;
 		//Load hinh anh
 		tempTexture.loadFromFile(this->objArr[i]->getImglink());
+		tempTexture.setSmooth(true);
 		//Set position object
 		Sprite tempSprite (tempTexture);
 		tempPos.x = this->objArr[i]->getPosition().x - this->objArr[i]->getWeight() / 2;
@@ -107,7 +123,7 @@ void game::objMove()
 {
 	
 	int n = this->objArr.size();
-	
+	//update cac chuyen dong obj
 	for (int i = 0; i < n; i++)
 	{
 		this->objArr[i]->move(this->objArr);
