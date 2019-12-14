@@ -8,11 +8,10 @@ private:
 	float height;
 	float weight;
 	float v, a;
-	int time;
-
+	
 public:
 	//constructor
-	paddle(float x, float y, float height, float weight, string Imglink, float v,float a=1.0,int t=0);
+	paddle(float x, float y, float height, float weight, string Imglink, float v,float a=1.0);
 	
 	//virtual
 	pos getPosition();
@@ -24,6 +23,6 @@ public:
 
 
 	void moveUp(int t);
-	void moveDown();
+	void moveDown(int t);
 };
 

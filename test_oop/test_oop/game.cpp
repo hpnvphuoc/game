@@ -34,11 +34,11 @@ void game::init()
 			this->objArr.push_back(temp);
 			break;
 		case 6:
-			temp = new paddle(40,684/2,100,25,"images/leftpaddle.png",30);
+			temp = new paddle(40,684/2,100,25,"images/leftpaddle.png",30,2);
 			this->objArr.push_back(temp);
 			break;
 		case 7:
-			temp = new paddle(1032-40, 684 / 2, 100, 25,"images/rightpaddle.png",30);
+			temp = new paddle(1032-40, 684 / 2, 100, 25,"images/rightpaddle.png",30,1);
 			this->objArr.push_back(temp);
 			break;
 		case 8:
@@ -61,12 +61,12 @@ void game::run()
 	RenderWindow window(VideoMode(1032	,684), "Pong Game!");
 	Clock clock;
 	float timer = 0, delay = 0.01;
+	int t = 0;
 	while (window.isOpen())
 	{
 
 		////// draw  ///////
 		Event e;
-		int t = 0;
 		while (window.pollEvent(e))
 		{
 			if (e.type == Event::Closed)
@@ -79,9 +79,14 @@ void game::run()
 		if (timer > delay) {
 			if (e.type == sf::Event::EventType::KeyPressed) {
 				t++;
+				if (t > 30) t = 30;
 			}
 			else {
-				t--;
+				if (e.type == sf::Event::EventType::KeyReleased) {
+					t--;
+					if (t < 0) t = 0;
+				}
+					
 			}
 			this->objMove(t);
 		}

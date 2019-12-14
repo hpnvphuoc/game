@@ -3,7 +3,7 @@
 
 
 
-paddle::paddle(float x, float y, float height, float weight, string Imglink,float v,float a,int t)
+paddle::paddle(float x, float y, float height, float weight, string Imglink,float v,float a)
 {
 	this->p.x = x;
 	this->p.y = y;
@@ -12,7 +12,6 @@ paddle::paddle(float x, float y, float height, float weight, string Imglink,floa
 	this->imgLink = Imglink;
 	this->v = v;
 	this->a = a;
-	this->time = time;
 }
 
 pos paddle::getPosition()
@@ -29,7 +28,7 @@ void paddle::move(vector<object*> list,int t)
 	};
 	if (Keyboard::isKeyPressed(Keyboard::Down)) {
 		if (this->getObjectName() == "rightpaddle") {
-			this->moveDown();
+			this->moveDown(t);
 		}
 	};
 	if (Keyboard::isKeyPressed(Keyboard::W)) {
@@ -39,7 +38,7 @@ void paddle::move(vector<object*> list,int t)
 	};
 	if (Keyboard::isKeyPressed(Keyboard::S)) {
 		if (this->getObjectName() == "leftpaddle") {
-			this->moveDown();
+			this->moveDown(t);
 		}
 	};
 }
@@ -80,15 +79,14 @@ string paddle::getImglink()
 void paddle::moveUp(int t)
 {
 	p.y = p.y - (v+a*t);
-
 	if (p.y-this->height / 2 < 0 + 13) {
 		p.y = 0 + 13+this->height/2;
 	}
 }
 
-void paddle::moveDown()
+void paddle::moveDown( int t)
 {
-	p.y = p.y + 30;
+	p.y = p.y + v+a*t;
 	if (p.y + this->height / 2 >  684 - 13) {
 		p.y = 684 - 13 - this->height / 2;
 	}
