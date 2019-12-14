@@ -18,7 +18,7 @@ public:
 	ball(int x, int y, int r, float a, float b, int direction, float v, float height, float weight, string imgLink);
 	//virtual
 	 pos getPosition();
-	void move(vector<object *>list);
+	void move(vector<object *>list,int t=0);
 	float getHeight();
 	float getWeight();
 	string getObjectName();

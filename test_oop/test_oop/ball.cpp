@@ -46,7 +46,7 @@ pos ball::getPosition()
 	return this->p;
 }
 
-void ball::move(vector<object *>list)
+void ball::move(vector<object *>list,int t)
 {
 	p.x = p.x + v;
 	p.y = a * p.x + b;

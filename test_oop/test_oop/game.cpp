@@ -66,6 +66,7 @@ void game::run()
 
 		////// draw  ///////
 		Event e;
+		int t = 0;
 		while (window.pollEvent(e))
 		{
 			if (e.type == Event::Closed)
@@ -76,7 +77,13 @@ void game::run()
 		clock.restart();
 		timer += time;
 		if (timer > delay) {
-			this->objMove();
+			if (e.type == sf::Event::EventType::KeyPressed) {
+				t++;
+			}
+			else {
+				t--;
+			}
+			this->objMove(t);
 		}
 		this->render(window);
 	}
@@ -103,14 +110,14 @@ void game::render(RenderWindow& window)
 
 }
 
-void game::objMove()
+void game::objMove(int t)
 {
 	
 	int n = this->objArr.size();
 	
 	for (int i = 0; i < n; i++)
 	{
-		this->objArr[i]->move(this->objArr);
+		this->objArr[i]->move(this->objArr,t);
 	}
 }
 

@@ -6,7 +6,7 @@ class boardgame:public object
 	float weight;
 public:
 	//virtual
-	 void move(vector<object *>list) ;
+	 void move(vector<object *>list,int t=0) ;
 	 pos getPosition() ;
 	 float getHeight() ;
 	 float getWeight() ;

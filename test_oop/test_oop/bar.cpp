@@ -16,7 +16,7 @@ pos bar::getPosition()
 	return this->p;
 }
 
-void bar::move(vector<object*> List)
+void bar::move(vector<object*> List,int t)
 {
 	
 }

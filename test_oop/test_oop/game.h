@@ -12,7 +12,7 @@ public:
 	void init();
 	void run();
 	void render(RenderWindow &window);
-	void objMove();
+	void objMove(int t);
 };
 
 

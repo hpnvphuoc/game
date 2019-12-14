@@ -18,7 +18,7 @@ pos player::getPosition()
 	return this->p;
 }
 
-void player::move(vector<object*> list)
+void player::move(vector<object*> list,int t)
 {
 	int n = list.size();
 	for (int i = 0; i < n; i++) {

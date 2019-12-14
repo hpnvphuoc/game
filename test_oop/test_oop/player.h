@@ -12,7 +12,7 @@ public:
 
 	//virtual
 	pos getPosition();
-	void move(vector<object *>list);
+	void move(vector<object *>list,int t=0);
 	float getHeight();
 	float getWeight();
 	string getObjectName();
