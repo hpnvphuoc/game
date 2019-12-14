@@ -3,13 +3,16 @@
 
 
 
-paddle::paddle(float x, float y, float height, float weight, string Imglink)
+paddle::paddle(float x, float y, float height, float weight, string Imglink,float v,float a,int time)
 {
 	this->p.x = x;
 	this->p.y = y;
 	this->height = height;
 	this->weight = weight;
 	this->imgLink = Imglink;
+	this->v = v;
+	this->a = a;
+	this->time = time;
 }
 
 pos paddle::getPosition()
@@ -76,10 +79,11 @@ string paddle::getImglink()
 
 void paddle::moveUp()
 {
-	p.y = p.y - 30;
-	if (p.y-this->height / 2 < 0 + 13) {
-		p.y = 0 + 13+this->height/2;
-	}
+	p.y = p.y - (v+a*time);
+
+	//if (p.y-this->height / 2 < 0 + 13) {
+	//	p.y = 0 + 13+this->height/2;
+	//}
 }
 
 void paddle::moveDown()

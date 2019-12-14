@@ -1,0 +1,41 @@
+﻿  ball.cpp
+E:\HocTap\Code\game\test_oop\test_oop\ball.h(5,9): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+E:\HocTap\Code\game\test_oop\test_oop\ball.cpp(32,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+E:\HocTap\Code\game\test_oop\test_oop\ball.cpp(33,8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+E:\HocTap\Code\game\test_oop\test_oop\ball.cpp(53,21): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+E:\HocTap\Code\game\test_oop\test_oop\ball.cpp(96,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+E:\HocTap\Code\game\test_oop\test_oop\ball.cpp(99,9): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\HocTap\Code\game\test_oop\test_oop\ball.cpp(106,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+E:\HocTap\Code\game\test_oop\test_oop\ball.cpp(109,9): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\HocTap\Code\game\test_oop\test_oop\ball.cpp(117,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+E:\HocTap\Code\game\test_oop\test_oop\ball.cpp(120,11): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\HocTap\Code\game\test_oop\test_oop\ball.cpp(130,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  bar.cpp
+E:\HocTap\Code\game\test_oop\test_oop\ball.cpp(133,11): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\HocTap\Code\game\test_oop\test_oop\bar.cpp(59,14): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+E:\HocTap\Code\game\test_oop\test_oop\bar.cpp(60,14): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+E:\HocTap\Code\game\test_oop\test_oop\bar.cpp(61,17): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  boardgame.cpp
+E:\HocTap\Code\game\test_oop\test_oop\bar.cpp(62,17): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+E:\HocTap\Code\game\test_oop\test_oop\boardgame.cpp(37,14): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  game.cpp
+E:\HocTap\Code\game\test_oop\test_oop\boardgame.cpp(38,14): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+E:\HocTap\Code\game\test_oop\test_oop\ball.h(5,9): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+E:\HocTap\Code\game\test_oop\test_oop\game.cpp(17,84): warning C4305: 'argument': truncation from 'double' to 'float'
+E:\HocTap\Code\game\test_oop\test_oop\game.cpp(63,31): warning C4305: 'initializing': truncation from 'double' to 'float'
+E:\HocTap\Code\game\test_oop\test_oop\game.cpp(89,29): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  main.cpp
+E:\HocTap\Code\game\test_oop\test_oop\game.cpp(109,29): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+E:\HocTap\Code\game\test_oop\test_oop\ball.h(5,9): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  object.cpp
+  paddle.cpp
+  player.cpp
+E:\HocTap\Code\game\test_oop\test_oop\main.cpp(2,13): warning C4326: return type of 'main' should be 'int' instead of 'void'
+E:\HocTap\Code\game\test_oop\test_oop\player.cpp(23,21): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+E:\HocTap\Code\game\test_oop\test_oop\bar.cpp(49): warning C4715: 'bar::getObjectName': not all control paths return a value
+E:\HocTap\Code\game\test_oop\test_oop\paddle.cpp(70): warning C4715: 'paddle::getObjectName': not all control paths return a value
+  All 230 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  test_oop.vcxproj -> E:\HocTap\Code\game\test_oop\x64\Release\test_oop.exe

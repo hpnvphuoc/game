@@ -7,9 +7,12 @@ class paddle :public object
 private:
 	float height;
 	float weight;
+	float v, a;
+	int time;
+
 public:
 	//constructor
-	paddle(float x, float y, float height, float weight,string Imglink);
+	paddle(float x, float y, float height, float weight, string Imglink, float v,float a=1.0,int time=0);
 	
 	//virtual
 	pos getPosition();

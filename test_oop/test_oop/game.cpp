@@ -34,11 +34,11 @@ void game::init()
 			this->objArr.push_back(temp);
 			break;
 		case 6:
-			temp = new paddle(40,684/2,100,25,"images/leftpaddle.png");
+			temp = new paddle(40,684/2,100,25,"images/leftpaddle.png",30);
 			this->objArr.push_back(temp);
 			break;
 		case 7:
-			temp = new paddle(1032-40, 684 / 2, 100, 25,"images/rightpaddle.png");
+			temp = new paddle(1032-40, 684 / 2, 100, 25,"images/rightpaddle.png",30);
 			this->objArr.push_back(temp);
 			break;
 		case 8:
