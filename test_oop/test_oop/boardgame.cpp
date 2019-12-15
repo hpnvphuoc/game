@@ -2,7 +2,7 @@
 
 
 
-void boardgame::move(vector<object*> list)
+void boardgame::move(vector<object*> &list, player &PLAYER, float time)
 {
 }
 

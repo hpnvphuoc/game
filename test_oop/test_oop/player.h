@@ -1,23 +1,26 @@
 #pragma once
-#include"object.h"
-class player:public object 
+#include<string>
+#include<iostream>
+using namespace std;
+struct pos
 {
-private:
-	float height;
-	float weight;
+	float x, y;
+};
+class player
+{
+	string name;
 	int score;
+	bool checkENDGAME;
+	float timeRemaining;
+	string BallStatus;
 public:
-	//constructor
-	player(float x, float y, float height, float weight,int score, string Imglink);
-
-	//virtual
-	pos getPosition();
-	void move(vector<object *>list);
-	float getHeight();
-	float getWeight();
-	string getObjectName();
-	string getImglink();
-
-	void Score();
+	string getName();
+	int getScore();
+	bool getcheckENDGAME(); 
+	void setName(string name);
+	void setScore(int score);
+	void setcheckENDGAME(bool check);
+	void gainScore(int x);
+	void reset();
 };
 

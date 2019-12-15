@@ -13,14 +13,15 @@ public:
 	
 	//virtual
 	pos getPosition();
-	void move(vector<object *>list);
+	void move(vector<object *>&list, player &PLAYER, float time);
 	float getHeight();
 	float getWeight();
 	string getObjectName();
 	string getImglink();
 
-
-	void moveUp();
-	void moveDown();
+	// di chuyen len
+	void moveLeft();
+	// di chuyen xuong
+	void moveRight();
 };
 

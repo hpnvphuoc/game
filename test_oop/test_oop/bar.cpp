@@ -16,7 +16,7 @@ pos bar::getPosition()
 	return this->p;
 }
 
-void bar::move(vector<object*> List)
+void bar::move(vector<object*> &List, player &PLAYER, float time)
 {
 	
 }
@@ -33,6 +33,7 @@ float bar::getWeight()
 
 string bar::getObjectName()
 {
+	//lay obj name dua tren igmlink
 	string tempObjName="";
 	bool checkName = false;
 	for (int i = 0; i < this->imgLink.length(); i++) {

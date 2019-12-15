@@ -6,12 +6,12 @@ class bar:public object
 	float weight;
 public:
 	 pos getPosition();
-	void move(vector<object *>list);
+	void move(vector<object *>&list,  player &PLAYER, float time);
 	float getHeight();
 	float getWeight();
 	string getObjectName();
 	string getImglink();
-
+	// khoi tao thanh
 	bar(int x, int y, int height, int weight, string imgLink);
 	bar();
 	~bar();

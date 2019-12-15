@@ -17,26 +17,17 @@ pos paddle::getPosition()
 	return this->p;
 }
 
-void paddle::move(vector<object*> list)
+void paddle::move(vector<object*>& list, player &PLAYER, float time)
 {
-	if (Keyboard::isKeyPressed(Keyboard::Up)) {
-		if (this->getObjectName() == "rightpaddle") {
-			this->moveUp();
+	// di chuyen len xuong right paddle
+	if (Keyboard::isKeyPressed(Keyboard::Left)) {
+		if (this->getObjectName() == "playerpaddle") {
+			this->moveLeft();
 		}
 	};
-	if (Keyboard::isKeyPressed(Keyboard::Down)) {
-		if (this->getObjectName() == "rightpaddle") {
-			this->moveDown();
-		}
-	};
-	if (Keyboard::isKeyPressed(Keyboard::W)) {
-		if (this->getObjectName() == "leftpaddle") {
-			this->moveUp();
-		}
-	};
-	if (Keyboard::isKeyPressed(Keyboard::S)) {
-		if (this->getObjectName() == "leftpaddle") {
-			this->moveDown();
+	if (Keyboard::isKeyPressed(Keyboard::Right)) {
+		if (this->getObjectName() == "playerpaddle") {
+			this->moveRight();
 		}
 	};
 }
@@ -74,19 +65,22 @@ string paddle::getImglink()
 	return this->imgLink;
 }
 
-void paddle::moveUp()
+void paddle::moveLeft()
 {
-	p.y = p.y - 30;
-	if (p.y-this->height / 2 < 0 + 13) {
-		p.y = 0 + 13+this->height/2;
+	p.x = p.x - 15;
+	if (p.x - this->weight / 2 < 0 ) {
+		p.x =  this->weight / 2;
 	}
 }
 
-void paddle::moveDown()
+void paddle::moveRight()
 {
-	p.y = p.y + 30;
-	if (p.y + this->height / 2 >  684 - 13) {
-		p.y = 684 - 13 - this->height / 2;
+	p.x = p.x + 15;
+	if (p.x + this->weight / 2 > 600) {
+		p.x = 600 - this->weight / 2;
 	}
 }
+
+
+
 

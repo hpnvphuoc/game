@@ -1,71 +1,45 @@
 #include "player.h"
 
-
-
-
-player::player(float x, float y, float height, float weight, int score, string Imglink)
+string player::getName()
 {
-	this->p.x = x;
-	this->p.y = y;
-	this->height = height;
-	this->weight = weight;
-	this->score = score;
-	this->imgLink = Imglink;
+	return this->name;
 }
 
-pos player::getPosition()
+int player::getScore()
 {
-	return this->p;
+	return this->score;
 }
 
-void player::move(vector<object*> list)
+bool player::getcheckENDGAME()
 {
-	int n = list.size();
-	for (int i = 0; i < n; i++) {
-		if (list[i]->getObjectName() == "ball") {
-			if (this->getObjectName() == "Player_Left"
-				&& list[i]->getPosition().x > 1032-6 ){
-				this->Score();
-			}
-			if (this->getObjectName() == "Player_Right"
-				&& list[i]->getPosition().x < 0+6 ) {
-				this->Score();
-			}
-		}
-	}
+	return this->checkENDGAME;
 }
 
-float player::getHeight()
+void player::setName(string name)
 {
-	return this->height;
+	this->name = name;
 }
 
-float player::getWeight()
+void player::setScore(int score)
 {
-	return this->weight;
+	this->score =  score;
 }
 
-string player::getObjectName()
+void player::setcheckENDGAME(bool check)
 {
-	if (this->p.x < 1032 / 2) {
-		return "Player_Left";
-	}
-	else
-	{
-		return "Player_Right";
-	}
+	this->checkENDGAME = check;
 }
 
-string player::getImglink()
+void player::gainScore(int x)
 {
-	return this->imgLink;
+	this->score = this->score + x;
 }
 
-void player::Score()
+void player::reset()
 {
-	score = score + 1;
-	this->imgLink = "";
-	this->imgLink =this->imgLink+ "images/" + char(48 + score) + ".png";
-	cout << "--" << this->imgLink << endl;
+	this->name = "";
+	this->score = 0;
+	this->checkENDGAME = false;
+	this->timeRemaining = 0;
+	this->BallStatus = "";
 }
-
