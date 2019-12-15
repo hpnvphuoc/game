@@ -24,12 +24,20 @@ class game
 	player PLAYER;
 	int checkScreen ;
 	float time;
+	int round;
 public:
 	void init();// khoi tao game
 	void run(); // chay game 
 	void render(RenderWindow &window, bool IsComputer = false); // render cac obj
 	void objMove(); // upadate object position
+
+	/////////render info ingame//////////
 	void renderPlayerScore(RenderWindow &window); // hien player score
+	void renderSpeedUpTime(RenderWindow& window);// hien TG cua item speed up
+	void renderDoubleTime(RenderWindow& window);// hien TG cua item speed up
+	void renderNumberofRound(RenderWindow& window);
+	///////////////////////////////////////
+
 	bool checkBrickIsExist();  // kiem tra xem con vien gach nao ko
 	void saveScore(); // luu diem cua player lai
 	////////////////cac map ///////////////////////

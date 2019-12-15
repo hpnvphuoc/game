@@ -111,7 +111,6 @@ void game::init()
 		}
 	}
 	//khoi tao man hinh menu defaul = -1
-	this->checkScreen = -1;
 }
 
 void game::run()
@@ -139,6 +138,8 @@ void game::run()
 		}
 
 		if (checkScreen == 0) {
+			round = 1;
+			this->PLAYER.setPlayerType("Player");
 			this->prepareForMap1();
 			this->Map1();
 		}
@@ -168,9 +169,16 @@ void game::render(RenderWindow& window, bool IsComputer)
 {
 	if (!IsComputer) {
 		window.clear();
+		//////////////////render info game//////////////////
 		//reder score
+		this->renderNumberofRound(window);
 		this->renderPlayerScore(window);
-		// render cac object
+		this->renderSpeedUpTime(window);
+		this->renderDoubleTime(window);
+		/////////////////
+
+
+		// render cac object //
 		int n = this->objArr.size(); // so object
 		for (int i = 0; i < n; i++) {
 			Texture tempTexture;
@@ -239,16 +247,17 @@ void game::objMove()
 
 void game::renderPlayerScore(RenderWindow & window)
 {
+
 		Font my_font;
 		my_font.loadFromFile("Assets/Font/MarkerFelt.ttf");
 		sf::Text play_opt;
 		//hien chu score
 		Text Score;
 		Score.setFont(my_font);
-		Score.setString("SCORE :");
-		Score.setFillColor(sf::Color::Red);
-		Score.setCharacterSize(50);
-		Score.setPosition(600, 200);
+		Score.setString("SCORE ");
+		Score.setFillColor(sf::Color::Yellow);
+		Score.setCharacterSize(40);
+		Score.setPosition(650, 100);
 
 		//hien diem
 		Text Player_Score;
@@ -257,13 +266,99 @@ void game::renderPlayerScore(RenderWindow & window)
 		string getPlayerscore = to_string(this->PLAYER.getScore()); // chuyen tu so sang chuoi
 		Player_Score.setString(getPlayerscore);
 		Player_Score.setFillColor(sf::Color::Red);
-		Player_Score.setCharacterSize(50);
-		Player_Score.setPosition(600, 400);
+		Player_Score.setCharacterSize(30);
+		Player_Score.setPosition(690, 180);
 
 
 		window.draw(Score);
 		window.draw(Player_Score);
 	
+}
+
+void game::renderSpeedUpTime(RenderWindow& window)
+{
+
+	Font my_font;
+	my_font.loadFromFile("Assets/Font/MarkerFelt.ttf");
+	sf::Text play_opt;
+	//hien chu Speed up
+	Text SpeedUp;
+	SpeedUp.setFont(my_font);
+	SpeedUp.setString("Speed up");
+	SpeedUp.setFillColor(sf::Color::Yellow);
+	SpeedUp.setCharacterSize(30);
+	SpeedUp.setPosition(650, 300);
+
+	//hien diem
+
+	Text SpeedUptime;
+
+	SpeedUptime.setFont(my_font);
+	string getPlayerscore = to_string(10-this->PLAYER.getSpeedUpTime()); // chuyen tu so sang chuoi
+	SpeedUptime.setString(getPlayerscore);
+	SpeedUptime.setFillColor(sf::Color::Yellow);
+	SpeedUptime.setCharacterSize(25);
+	SpeedUptime.setPosition(670, 350);
+	if (this->PLAYER.getSpeedUp() == true) {
+		window.draw(SpeedUptime);
+		window.draw(SpeedUp);
+	}
+}
+
+void game::renderDoubleTime(RenderWindow& window)
+{
+	Font my_font;
+	my_font.loadFromFile("Assets/Font/MarkerFelt.ttf");
+	sf::Text play_opt;
+	//hien chu Doutble Score
+	Text Double;
+	Double.setFont(my_font);
+	Double.setString("Double Score");
+	Double.setFillColor(sf::Color::Yellow);
+	Double.setCharacterSize(30);
+	Double.setPosition(650, 400);
+
+	//hien diem
+
+	Text Doubletime;
+
+	Doubletime.setFont(my_font);
+	string getPlayerscore = to_string(10 - this->PLAYER.getDoulbeTime()); // chuyen tu so sang chuoi
+	Doubletime.setString(getPlayerscore);
+	Doubletime.setFillColor(sf::Color::Yellow);
+	Doubletime.setCharacterSize(25);
+	Doubletime.setPosition(670, 450);
+	if (this->PLAYER.getDoulbe() == true) {
+		window.draw(Doubletime);
+		window.draw(Double);
+	}
+}
+
+void game::renderNumberofRound(RenderWindow& window)
+{
+	Font my_font;
+	my_font.loadFromFile("Assets/Font/MarkerFelt.ttf");
+	sf::Text play_opt;
+	//hien chu Round
+	Text Round;
+	Round.setFont(my_font);
+	Round.setString("Round");
+	Round.setFillColor(sf::Color::Yellow);
+	Round.setCharacterSize(30);
+	Round.setPosition(650, 40);
+
+	//hien diem
+
+	Text RoundNumber;
+
+	RoundNumber.setFont(my_font);
+	string getPlayerscore = to_string(round); // chuyen tu so sang chuoi
+	RoundNumber.setString(getPlayerscore);
+	RoundNumber.setFillColor(sf::Color::Yellow);
+	RoundNumber.setCharacterSize(30);
+	RoundNumber.setPosition(750, 40);
+		window.draw(Round);
+		window.draw(RoundNumber);
 }
 
 bool game::checkBrickIsExist()
@@ -284,11 +379,20 @@ void game::saveScore()
 	font.loadFromFile("Assets/Font/MarkerFelt.ttf");
 	sf::Event event;
 	sf::String playerInput;
+	//////////khoi tao cac text hien len khi save diem///////////
 	sf::Text playerText("",font,30);
 	sf::Text INPUTNAME("INPUT YOU NAME :", font, 30);
-	INPUTNAME.setPosition(50, 50);
-	playerText.setPosition(300, 50);
+	Text YOUWIN("YOU WIN !!!!!!!!!", font, 30);
+	Text YOULOSE("YOU LOSE !!!!!!!!!", font, 30);
+	///////////set up vi tri/////////////////
+	YOULOSE.setPosition(350, 100);
+	YOUWIN.setPosition(350, 100);
+	YOUWIN.setFillColor(sf::Color::Yellow);
+	YOULOSE.setFillColor(sf::Color::Yellow);
+	INPUTNAME.setPosition(50, 200);
+	playerText.setPosition(300, 200);
 	playerText.setFillColor(sf::Color::Red);
+	////////////Nhap ten///////////////
 	while (window.isOpen())
 	{
 		while (window.pollEvent(event))
@@ -332,7 +436,16 @@ void game::saveScore()
 				return;
 			}*/
 		}
+
+		////////xuat ra //////////
 		window.clear();
+		//dieu kien hien chu YOU WIN
+		if (this->PLAYER.getcheckENDGAME() == false) {
+			window.draw(YOUWIN);
+			//dieu kien hien chu YOU LOSE
+		}else{
+			window.draw(YOULOSE);
+		}
 		window.draw(INPUTNAME);
 		window.draw(playerText);
 		window.display();
@@ -437,7 +550,7 @@ void game::prepareForMap2()
 			this->objArr.push_back(temp);
 			break;
 		case 2:
-			temp = new ball(300, 580, 10, -2, 0, 1, 2, 20, 20, "images/ball.png");
+			temp = new ball(300, 580, 10, -2.5, 0, 1, 1, 20, 20, "images/ball.png");
 			this->objArr.push_back(temp);
 			break;
 
@@ -528,65 +641,79 @@ void game::Map2()
 	Clock clock;
 	float timer = 0, delay = 0.01;
 	float itemTime = 0;
+	bool checkPause = false;
 	while (window.isOpen())
 	{
 		////// draw  ///////
-		Event e;	
+		Event e;
 		while (window.pollEvent(e))
 		{
 			if (e.type == Event::Closed)
 				window.close();
-		}
-
-		float time = clock.getElapsedTime().asSeconds();
-		clock.restart();
-		timer += time;
-
-		itemTime = itemTime + timer; // tinh time de hien item
-		//tinh time cho Double Item
-		if (PLAYER.getDoulbe() == true) {
-			PLAYER.setDoubleTime(PLAYER.getDoulbeTime() + timer);
-			if (PLAYER.getDoulbe() > 8) {
-				this->PLAYER.setDouble(false);
-				PLAYER.setDoubleTime(0);
+			if (e.type == Event::KeyPressed) {
+				if (e.key.code == sf::Keyboard::Escape) {
+					window.close();
+					return;
+				}
+				if (e.key.code == sf::Keyboard::Space) {
+					checkPause = !checkPause;
+				}
 			}
 		}
+		if (checkPause == false) {
+			float time = clock.getElapsedTime().asSeconds();
+			clock.restart();
+			timer += time;
 
-		//tinh time cho SpeedUp Item
-		if (PLAYER.getSpeedUp() == true) {
-			PLAYER.setSpeedUpTime(PLAYER.getSpeedUpTime() + timer);
-			if (PLAYER.getSpeedUpTime() > 10) {
-				this->PLAYER.setSpeedUp(false);
-				PLAYER.setSpeedUpTime(0);
+			itemTime = itemTime + timer; // tinh time de hien item
+			//tinh time cho Double Item
+			if (PLAYER.getDoulbe() == true) {
+				PLAYER.setDoubleTime(PLAYER.getDoulbeTime() + timer);
+				if (PLAYER.getDoulbe() > 10) {
+					this->PLAYER.setDouble(false);
+					PLAYER.setDoubleTime(0);
+				}
 			}
-		}
 
-		//tao item random moi 5 s
-		if (itemTime > 5) {
-			this->GenerateItem();
-			itemTime = 0;
-		}
-		if (timer > delay) {
-			this->objMove();
-			timer = 0;
-		}
-		//xong man 2 qua man 3
-		if (this->checkBrickIsExist() == false) {
-			this->prepareForMap3();
-			this->Map3();
-			window.close();
-			return;
-		};
-		//bi thua - dung bottom bar
-		if (PLAYER.getcheckENDGAME() == false) {
-			this->render(window);
-		}
-		else {
-			this->saveScore();
-			this->checkScreen = -1;
-			PLAYER.setcheckENDGAME(false);
-			window.close();
-			return;
+			//tinh time cho SpeedUp Item
+			if (PLAYER.getSpeedUp() == true) {
+				PLAYER.setSpeedUpTime(PLAYER.getSpeedUpTime() + timer);
+				if (PLAYER.getSpeedUpTime() > 10) {
+					this->PLAYER.setSpeedUp(false);
+					PLAYER.setSpeedUpTime(0);
+				}
+			}
+
+			//tao item random moi 5 s
+			if (itemTime > 5) {
+				this->GenerateItem();
+				itemTime = 0;
+			}
+			if (timer > delay) {
+				this->objMove();
+				timer = 0;
+			}
+			//xong man 2 qua man 3
+			if (this->checkBrickIsExist() == false) {
+				round++;
+				this->prepareForMap3();
+				this->Map3();
+				window.close();
+				return;
+			};
+			//bi thua
+			if (PLAYER.getcheckENDGAME() == false) {
+				this->render(window);
+			}
+			else {
+				if (this->PLAYER.getTyperPlayer() != "Computer") {
+					this->saveScore();
+				}
+				this->checkScreen = -1;
+				PLAYER.setcheckENDGAME(false);
+				window.close();
+				return;
+			}
 		}
 	}
 }
@@ -679,6 +806,7 @@ void game::Map3()
 	Clock clock;
 	float timer = 0, delay = 0.01;
 	float itemTime = 0;
+	bool checkPause = false;
 	while (window.isOpen())
 	{
 		////// draw  ///////
@@ -687,58 +815,70 @@ void game::Map3()
 		{
 			if (e.type == Event::Closed)
 				window.close();
-		}
-
-		float time = clock.getElapsedTime().asSeconds();
-		clock.restart();
-		timer += time;
-
-		itemTime = itemTime + timer; // tinh time de hien item
-		//tinh time cho Double Item
-		if (PLAYER.getDoulbe() == true) {
-			PLAYER.setDoubleTime(PLAYER.getDoulbeTime() + timer);
-			if (PLAYER.getDoulbe() > 5) {
-				this->PLAYER.setDouble(false);
-				PLAYER.setDoubleTime(0);
+			if (e.type == Event::KeyPressed) {
+				if (e.key.code == sf::Keyboard::Escape) {
+					window.close();
+					return;
+				}
+				if (e.key.code == sf::Keyboard::Space) {
+					checkPause = !checkPause;
+				}
 			}
 		}
+		if (checkPause == false) {
+			float time = clock.getElapsedTime().asSeconds();
+			clock.restart();
+			timer += time;
 
-		//tinh time cho SpeedUp Item
-		if (PLAYER.getSpeedUp() == true) {
-			PLAYER.setSpeedUpTime(PLAYER.getSpeedUpTime() + timer);
-			if (PLAYER.getSpeedUpTime() > 10) {
-				this->PLAYER.setSpeedUp(false);
-				PLAYER.setSpeedUpTime(0);
+			itemTime = itemTime + timer; // tinh time de hien item
+			//tinh time cho Double Item
+			if (PLAYER.getDoulbe() == true) {
+				PLAYER.setDoubleTime(PLAYER.getDoulbeTime() + timer);
+				if (PLAYER.getDoulbe() > 10) {
+					this->PLAYER.setDouble(false);
+					PLAYER.setDoubleTime(0);
+				}
 			}
-		}
 
-		//tao item random moi 5 s
-		if (itemTime > 5) {
-			this->GenerateItem();
-			itemTime = 0;
-		}
-		if (timer > delay) {
-			this->objMove();
-			timer = 0;
-		}
-		//Ket thuc man 3 xong game save diem
-		if (this->checkBrickIsExist() == false) {
-			this->saveScore();
-			this->checkScreen = -1;
-			PLAYER.setcheckENDGAME(false);
-			window.close();
-			return;
-		};
-		//bi thua
-		if (PLAYER.getcheckENDGAME() == false) {
-			this->render(window);
-		}
-		else {
-			this->saveScore();
-			this->checkScreen = -1;
-			PLAYER.setcheckENDGAME(false);
-			window.close();
-			return;
+			//tinh time cho SpeedUp Item
+			if (PLAYER.getSpeedUp() == true) {
+				PLAYER.setSpeedUpTime(PLAYER.getSpeedUpTime() + timer);
+				if (PLAYER.getSpeedUpTime() > 10) {
+					this->PLAYER.setSpeedUp(false);
+					PLAYER.setSpeedUpTime(0);
+				}
+			}
+
+			//tao item random moi 5 s
+			if (itemTime > 5) {
+				this->GenerateItem();
+				itemTime = 0;
+			}
+			if (timer > delay) {
+				this->objMove();
+				timer = 0;
+			}
+			//xong man 3 xong game
+			if (this->checkBrickIsExist() == false) {
+				if (this->PLAYER.getTyperPlayer() != "Computer") {
+					this->saveScore();
+				}
+				this->checkScreen = -1;
+				PLAYER.setcheckENDGAME(false);
+				window.close();
+				return;
+			};
+			//bi thua
+			if (PLAYER.getcheckENDGAME() == false) {
+				this->render(window);
+			}
+			else {
+				this->saveScore();
+				this->checkScreen = -1;
+				PLAYER.setcheckENDGAME(false);
+				window.close();
+				return;
+			}
 		}
 	}
 }
@@ -749,6 +889,7 @@ void game::Map1( )
 	Clock clock;
 	float timer = 0, delay = 0.01;
 	float itemTime=0;
+	bool checkPause = false;
 	while (window.isOpen())
 	{
 		////// draw  ///////
@@ -757,8 +898,17 @@ void game::Map1( )
 		{
 			if (e.type == Event::Closed)
 				window.close();
+			if (e.type == Event::KeyPressed) {
+				if (e.key.code == sf::Keyboard::Escape) {
+					window.close();
+					return;
+				}
+				if (e.key.code == sf::Keyboard::Space) {
+					checkPause = !checkPause;
+				}
+			}
 		}
-		
+		if (checkPause == false) {
 			float time = clock.getElapsedTime().asSeconds();
 			clock.restart();
 			timer += time;
@@ -766,16 +916,16 @@ void game::Map1( )
 			itemTime = itemTime + timer; // tinh time de hien item
 			//tinh time cho Double Item
 			if (PLAYER.getDoulbe() == true) {
-				PLAYER.setDoubleTime(PLAYER.getDoulbeTime()+timer) ;
-				if (PLAYER.getDoulbe()>10) {
+				PLAYER.setDoubleTime(PLAYER.getDoulbeTime() + timer);
+				if (PLAYER.getDoulbe() > 10) {
 					this->PLAYER.setDouble(false);
-					PLAYER.setDoubleTime(0) ;
+					PLAYER.setDoubleTime(0);
 				}
 			}
 
 			//tinh time cho SpeedUp Item
 			if (PLAYER.getSpeedUp() == true) {
-				PLAYER.setSpeedUpTime(PLAYER.getSpeedUpTime()+timer);
+				PLAYER.setSpeedUpTime(PLAYER.getSpeedUpTime() + timer);
 				if (PLAYER.getSpeedUpTime() > 10) {
 					this->PLAYER.setSpeedUp(false);
 					PLAYER.setSpeedUpTime(0);
@@ -793,6 +943,7 @@ void game::Map1( )
 			}
 			//xong man 1 qua man 2
 			if (this->checkBrickIsExist() == false) {
+				round++;
 				this->prepareForMap2();
 				this->Map2();
 				window.close();
@@ -802,14 +953,17 @@ void game::Map1( )
 			if (PLAYER.getcheckENDGAME() == false) {
 				this->render(window);
 			}
+			//save score
 			else {
-				this->saveScore();
-				cout << "save xong";
+				if (this->PLAYER.getTyperPlayer() != "Computer") {
+					this->saveScore();
+				}
 				this->checkScreen = -1;
-				PLAYER.setcheckENDGAME(false) ;
+				PLAYER.setcheckENDGAME(false);
 				window.close();
 				return;
 			}
+		}
 	}
 }
 
@@ -819,12 +973,12 @@ void game::showHighScore()
 	this->SortHighScore();
 	//lay top 10
 	int n = this->HighScore.size();
-	int Top10;
-	if (n > 10) {
-		Top10 = 10;
+	int Top5;
+	if (n > 5) {
+		Top5 = 5;
 	}
 	else {
-		Top10 = n;
+		Top5 = n;
 	}
 
 	// set Font
@@ -844,18 +998,35 @@ void game::showHighScore()
 			if (e.type == Event::Closed)
 				window.close();
 			if (e.type == Event::KeyPressed) {
-				if (e.key.code == sf::Keyboard::X) {
+				if (e.key.code == sf::Keyboard::Escape) {
 					this->checkScreen = -1;
 					window.close();
 					return;
 				}
 			}
 		}
-		//reder "NAME" && "SCORE"
-		//NAME
-		int pXName = 150, pXScore = 500, pY = 200;
+		//render RANK
 		tempText.setFont(my_font);
-		tempText.setString("Name");
+		tempText.setString("RANK");
+		tempText.setFillColor(sf::Color::Red);
+		tempText.setCharacterSize(50);
+		tempText.setPosition(350, 100);
+		window.draw(tempText);
+		//reder "NAME" && "SCORE" && TOP
+
+		int pXName = 300, pXScore = 500, pXTOP = 100, pY = 200;
+
+		//TOP
+		tempText.setFont(my_font);
+		tempText.setString("TOP");
+		tempText.setFillColor(sf::Color::Red);
+		tempText.setCharacterSize(40);
+		tempText.setPosition(pXTOP, pY);
+		window.draw(tempText);
+
+		//NAME
+		tempText.setFont(my_font);
+		tempText.setString("NAME");
 		tempText.setFillColor(sf::Color::Red);
 		tempText.setCharacterSize(40);
 		tempText.setPosition(pXName, pY);
@@ -872,14 +1043,23 @@ void game::showHighScore()
 
 
 		//render player name and score
-		for (int i = 0; i < Top10; i++) {
+		for (int i = 0; i < Top5; i++) {
 			//	//dat lai toa do
-			pY = pY + 50;
+			pY = pY + 70;
+
+			// render TOP
+			tempText.setFont(my_font);
+			string TOP = to_string(i+1); // chuyen tu so sang chuoi
+			tempText.setString(TOP);
+			tempText.setFillColor(sf::Color::Yellow);
+			tempText.setCharacterSize(30);
+			tempText.setPosition(pXTOP + 10, pY);
+			window.draw(tempText);
 
 			//	//render player name
 			tempText.setFont(my_font);
 			tempText.setString(this->HighScore[i].getName());
-			tempText.setFillColor(sf::Color::Red);
+			tempText.setFillColor(sf::Color::Yellow);
 			tempText.setCharacterSize(30);
 			tempText.setPosition(pXName, pY);
 			window.draw(tempText);
@@ -888,7 +1068,7 @@ void game::showHighScore()
 			string getPlayerscore = to_string(this->HighScore[i].getScore()); // chuyen tu so sang chuoi
 			tempText.setFont(my_font);
 			tempText.setString(getPlayerscore);
-			tempText.setFillColor(sf::Color::Red);
+			tempText.setFillColor(sf::Color::Yellow);
 			tempText.setCharacterSize(30);
 			tempText.setPosition(pXScore, pY);
 			window.draw(tempText);
@@ -1012,11 +1192,15 @@ void game::Instruction()
 			if (e.type == Event::Closed)
 				window.close();
 			if (e.type == Event::KeyPressed) {
+				//chay game map 1 do computer play
+				this->PLAYER.setPlayerType("Computer");
+				this->prepareForMap1();
+				this->Map1();
+
 				if (e.key.code == sf::Keyboard::Escape) {
 					window.close();
 					return;
 				}
-				//this.PlayWitCumputer();
 			}
 		}
 
@@ -1068,11 +1252,11 @@ game::game()
 		fileInput.getline(temp, 255);
 		 SScore= temp;
 		 score = stoi(SScore);
-		 cout << score;
 		tempPlayer.setScore(score);
 		this->HighScore.push_back(tempPlayer);
 	}
 	fileInput.close();
+	this->checkScreen = -1;
 }
 
 game::~game()

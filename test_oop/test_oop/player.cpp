@@ -35,6 +35,16 @@ float player::getSpeedUpTime()
 	return this->SpeedUpTime;
 }
 
+string player::getTyperPlayer()
+{
+	return this->TypePlayer;
+}
+
+string player::setPlayerType(string x)
+{
+	return this->TypePlayer = x;
+}
+
 void player::setName(string name)
 {
 	this->name = name;
@@ -87,6 +97,11 @@ void player::gainScore(int x)
 void player::reset()
 {
 	this->name = "";
+	this->Double = false;
+	this->SpeedUp = false;
+	this->DoubleTime = 0;
+	this->SpeedUpTime = 0;
+	this->TypePlayer = "";
 	this->score = 0;
 	this->checkENDGAME = false;
 }

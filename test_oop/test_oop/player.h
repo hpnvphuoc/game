@@ -10,8 +10,8 @@ class player
 	int mapLevel;
 	int score;
 	bool checkENDGAME;
-	bool SpeedUp;
 	bool Double;
+	bool SpeedUp;
 	float SpeedUpTime;
 	float DoubleTime;
 public:
@@ -23,6 +23,7 @@ public:
 	bool getDoulbe();
 	float getDoulbeTime();
 	float getSpeedUpTime();
+	string getTyperPlayer();
 	//set cac thuoc tinh
 	void setName(string name);
 	void setScore(int score);
@@ -31,6 +32,7 @@ public:
 	void setDouble(bool check);
 	void setDoubleTime(float x);
 	void setSpeedUpTime(float x);
+	string setPlayerType(string x);
 	void gainScore(int x);
 	void reset();
 	player(string, string,int,bool,bool,bool,float,float);

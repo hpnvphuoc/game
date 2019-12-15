@@ -19,17 +19,28 @@ pos paddle::getPosition()
 
 void paddle::move(vector<object*>& list, player &PLAYER, float time)
 {
-	// di chuyen len xuong right paddle
-	if (Keyboard::isKeyPressed(Keyboard::Left)) {
-		if (this->getObjectName() == "playerpaddle") {
-			this->moveLeft();
-		}
-	};
-	if (Keyboard::isKeyPressed(Keyboard::Right)) {
-		if (this->getObjectName() == "playerpaddle") {
-			this->moveRight();
-		}
-	};
+	//may choi
+	if (PLAYER.getTyperPlayer() == "Computer") {
+		this->PaddleAutoMove(list, PLAYER, time);
+
+	}
+	//nguoi choi
+
+	else {
+		// di chuyen len xuong right paddle
+		if (Keyboard::isKeyPressed(Keyboard::Left)) {
+			if (this->getObjectName() == "playerpaddle") {
+				this->moveLeft();
+			}
+		};
+		if (Keyboard::isKeyPressed(Keyboard::Right)) {
+			if (this->getObjectName() == "playerpaddle") {
+				this->moveRight();
+			}
+		};
+
+	}
+	
 }
 
 

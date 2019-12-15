@@ -134,7 +134,8 @@ void ball::conlisionTopbar(pos TopbarPos, float TopbarHeight, float TopbarWeight
 		int tempy = height / 2 + TopbarPos.y + TopbarHeight / 2;
 		b = 2 * tempy - b;;
 		a = -a;
-		v = v ;
+		v = v
+			;
 	}
 }
 
@@ -178,7 +179,7 @@ void ball::conlisionPaddle(pos PaddlePos, float PaddleHeight, float PaddleWeight
 			int tempy = -height / 2 + PaddlePos.y - PaddleHeight / 2;
 			b = tempy * 2 - b;
 			a = -a;
-			v = v;
+			v = v*1.1;
 		}
 	};
 }
@@ -228,7 +229,6 @@ bool ball::conlisionBrick(pos BrickPos, float BrickHeight, float BrickWeight)
 	//va cham tren
 	if (p.y + height / 2 > BrickPos.y - BrickHeight / 2 && p.y + height / 2 < BrickPos.y + BrickHeight / 2) {
 		if (p.x > BrickPos.x - BrickWeight / 2 && p.x < BrickPos.x + BrickWeight / 2) {
-			cout << "ball-tren"<<endl;
 			int tempy = -height / 2 + BrickPos.y - BrickHeight / 2;
 			b = tempy * 2 - b;
 			a = -a;
@@ -239,7 +239,6 @@ bool ball::conlisionBrick(pos BrickPos, float BrickHeight, float BrickWeight)
 	//va cham duoi
 	if (p.y - height / 2 < BrickPos.y + BrickHeight / 2 && p.y - height / 2 > BrickPos.y - BrickHeight / 2) {
 		if (p.x > BrickPos.x - BrickWeight / 2 && p.x < BrickPos.x + BrickWeight / 2) {
-			cout << "ball-duoi"<<endl;
 			int tempy = height / 2 + BrickPos.y + BrickHeight / 2;
 			b = 2 * tempy - b;
 			a = -a;
@@ -250,7 +249,6 @@ bool ball::conlisionBrick(pos BrickPos, float BrickHeight, float BrickWeight)
 	//va cham  mat phai
 	if (p.x - weight / 2 < BrickPos.x + BrickWeight / 2 && p.x - weight / 2 > BrickPos.x - BrickWeight / 2) {
 		if (p.y > BrickPos.y - BrickHeight / 2 && p.y < BrickPos.y + BrickHeight / 2) {
-			cout << "ball-phai"<<endl;
 			int tempx = weight / 2 + BrickPos.x + BrickWeight / 2;
 			b = 2 * tempx*a + b;
 			a = -a;
@@ -261,7 +259,6 @@ bool ball::conlisionBrick(pos BrickPos, float BrickHeight, float BrickWeight)
 	//va cham mat trai
 	if (p.x + weight / 2 > BrickPos.x - BrickWeight / 2 && p.x + weight / 2 < BrickPos.x + BrickWeight / 2) {
 		if (p.y > BrickPos.y - BrickHeight / 2 && p.y < BrickPos.y + BrickHeight / 2) {
-			cout << "ball-trai"<<endl;
 			int tempx = -weight / 2 + BrickPos.x - BrickWeight / 2;
 			b = 2 * tempx*a + b;
 			a = -a;
@@ -274,9 +271,6 @@ bool ball::conlisionBrick(pos BrickPos, float BrickHeight, float BrickWeight)
 
 void ball::breakBrick(int vitri, vector<object*>& list)
 {
-	cout << list.size() << endl;
-	cout << vitri << endl;
-	
 	list.erase(list.begin() + vitri);
 }
 

@@ -73,7 +73,7 @@ void Menu::update()
 {
 	//update menu
 	for (int i = 0; i < this->MenuList.size(); i++) {
-		MenuList[i].setFillColor(sf::Color::Red);
+		MenuList[i].setFillColor(sf::Color::Yellow);
 		MenuList[i].setCharacterSize(50);
 		if (i == this->Optional) {
 			MenuList[i].setFillColor(sf::Color::White);
@@ -90,28 +90,28 @@ Menu::Menu()
 	this->MenuList.resize(4);
 	MenuList[0].setFont(my_font);
 	MenuList[0].setString("Play");
-	MenuList[0].setFillColor(sf::Color::Red);
+	MenuList[0].setFillColor(sf::Color::Yellow);
 	MenuList[0].setCharacterSize(40);
-	MenuList[0].setPosition(250, 150);
+	MenuList[0].setPosition(350, 150);
 
 	MenuList[1].setFont(my_font);
 	MenuList[1].setString("High Score");
-	MenuList[1].setFillColor(sf::Color::Red);
+	MenuList[1].setFillColor(sf::Color::Yellow);
 	MenuList[1].setCharacterSize(40);
-	MenuList[1].setPosition(250, 350);
+	MenuList[1].setPosition(350, 300);
 
 
 	MenuList[2].setFont(my_font);
 	MenuList[2].setString("Instruction");
-	MenuList[2].setFillColor(sf::Color::Red);
+	MenuList[2].setFillColor(sf::Color::Yellow);
 	MenuList[2].setCharacterSize(40);
-	MenuList[2].setPosition(250, 450);
+	MenuList[2].setPosition(350, 450);
 
 	MenuList[3].setFont(my_font);
 	MenuList[3].setString("Exit");
-	MenuList[3].setFillColor(sf::Color::Red);
+	MenuList[3].setFillColor(sf::Color::Yellow);
 	MenuList[3].setCharacterSize(40);
-	MenuList[3].setPosition(250, 550);
+	MenuList[3].setPosition(350, 600);
 	this->Optional = 0;
 }
 
