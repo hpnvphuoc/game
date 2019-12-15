@@ -27,7 +27,7 @@ class game
 public:
 	void init();// khoi tao game
 	void run(); // chay game 
-	void render(RenderWindow &window); // render cac obj
+	void render(RenderWindow &window, bool IsComputer = false); // render cac obj
 	void objMove(); // upadate object position
 	void renderPlayerScore(RenderWindow &window); // hien player score
 	bool checkBrickIsExist();  // kiem tra xem con vien gach nao ko
@@ -44,7 +44,6 @@ public:
 	void Map3();//
 
 	void showHighScore();// hien diem top 10 cao nhat len
-	void SortHighScore();
 	void ItemPushBack(item tempItem);
 
 
@@ -54,6 +53,9 @@ public:
 	void addScoreUpItem();
 	void addScoreDownItem();
 	void GenerateItem();
+	void SortHighScore();//sap xep diem cua nguoi choi
+	void Instruction();
+
 	//constrcutor destructor
 	game();
 	~game();

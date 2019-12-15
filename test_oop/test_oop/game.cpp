@@ -8,11 +8,11 @@ void game::init()
 		switch (i)
 		{
 		case 1:
-			temp = new paddle(300,600,10, 150, "images/playerpaddle.png");
+			temp = new ball(300, 580, 10, -2, 0, 1, 2, 20, 20, "images/ball.png");
 			this->objArr.push_back(temp);
 			break;
 		case 2:
-			temp = new ball(300 , 580, 10, -2 , 0, 1,2, 20, 20, "images/ball.png");
+			temp = new paddle(300, 600, 10, 150, "images/playerpaddle.png");
 			this->objArr.push_back(temp);
 			break;
 		
@@ -133,54 +133,83 @@ void game::run()
 				this->main_Menu.drawMenuList(window);
 				this->checkScreen = this->main_Menu.Optional_choose(e);
 			}
+			if (e.type == Event::KeyPressed && e.key.code == sf::Keyboard::Escape) {
+				this->checkScreen = -1;
+			}
 		}
-		
-		// player choi
+
 		if (checkScreen == 0) {
 			this->prepareForMap1();
 			this->Map1();
 		}
 		// computer choi 
 		if (this->checkScreen == 1) {
-			about_info.drawInfo(window);
-			checkScreen = about_info.exit_info();
+			this->showHighScore();
+			
 		}
 		//high score
 		if (this->checkScreen == 2) {
-			this->showHighScore();
+			this->Instruction();
 		}
-		//huongdan
-		//ket thuc
-		if (this->checkScreen == 4) {
+		if (3 == this->checkScreen) {
 			window.close();
-			return;
 		}
+
+		
+		//Back lai man hinh chinh
+		this->checkScreen = -1;
+		
 	}
 		// Man hinh menu chinh
 
 }
 
-void game::render(RenderWindow& window)
+void game::render(RenderWindow& window, bool IsComputer)
 {
-	window.clear();
-	//reder score
-	this->renderPlayerScore(window);
-	// render cac object
-	int n = this->objArr.size(); // so object
-	for (int i = 0; i < n; i++) {
-		Texture tempTexture;
-		pos tempPos;
-		//Load hinh anh
-		tempTexture.loadFromFile(this->objArr[i]->getImglink());
-		tempTexture.setSmooth(true);
-		//Set position object
-		Sprite tempSprite (tempTexture);
-		tempPos.x = this->objArr[i]->getPosition().x - this->objArr[i]->getWeight() / 2;
-		tempPos.y = this->objArr[i]->getPosition().y - this->objArr[i]->getHeight() / 2;
-		tempSprite.setPosition(tempPos.x, tempPos.y);
-		window.draw(tempSprite);
+	if (!IsComputer) {
+		window.clear();
+		//reder score
+		this->renderPlayerScore(window);
+		// render cac object
+		int n = this->objArr.size(); // so object
+		for (int i = 0; i < n; i++) {
+			Texture tempTexture;
+			pos tempPos;
+			//Load hinh anh
+			tempTexture.loadFromFile(this->objArr[i]->getImglink());
+			tempTexture.setSmooth(true);
+			//Set position object
+			Sprite tempSprite(tempTexture);
+			tempPos.x = this->objArr[i]->getPosition().x - this->objArr[i]->getWeight() / 2;
+			tempPos.y = this->objArr[i]->getPosition().y - this->objArr[i]->getHeight() / 2;
+			tempSprite.setPosition(tempPos.x, tempPos.y);
+			window.draw(tempSprite);
+		}
+		window.display();
 	}
-	window.display();
+	else {
+		window.clear();
+		//reder score
+		this->renderPlayerScore(window);
+		// render cac object
+		int n = this->objArr.size(); // so object
+		for (int i = 0; i < n; i++) {
+			Texture tempTexture;
+			pos tempPos;
+			//Load hinh anh
+			tempTexture.loadFromFile(this->objArr[i]->getImglink());
+			tempTexture.setSmooth(true);
+			//Set position object
+			Sprite tempSprite(tempTexture);
+			tempPos.x = this->objArr[i]->getPosition().x - this->objArr[i]->getWeight() / 2;
+			tempPos.y = this->objArr[i]->getPosition().y - this->objArr[i]->getHeight() / 2;
+			tempSprite.setPosition(tempPos.x, tempPos.y);
+			window.draw(tempSprite);
+		}
+		window.display();
+
+	}
+	
 
 }
 
@@ -210,30 +239,31 @@ void game::objMove()
 
 void game::renderPlayerScore(RenderWindow & window)
 {
-	Font my_font;
-	my_font.loadFromFile("Assets/Font/MarkerFelt.ttf");
-	sf::Text play_opt;
-	//hien chu score
-	Text Score;
-	Score.setFont(my_font);
-	Score.setString("SCORE :");
-	Score.setFillColor(sf::Color::Red);
-	Score.setCharacterSize(50);
-	Score.setPosition(600, 200);
+		Font my_font;
+		my_font.loadFromFile("Assets/Font/MarkerFelt.ttf");
+		sf::Text play_opt;
+		//hien chu score
+		Text Score;
+		Score.setFont(my_font);
+		Score.setString("SCORE :");
+		Score.setFillColor(sf::Color::Red);
+		Score.setCharacterSize(50);
+		Score.setPosition(600, 200);
 
-	//hien diem
-	Text Player_Score;
+		//hien diem
+		Text Player_Score;
 
-	Player_Score.setFont(my_font);
-	string getPlayerscore = to_string(this->PLAYER.getScore()); // chuyen tu so sang chuoi
-	Player_Score.setString(getPlayerscore);
-	Player_Score.setFillColor(sf::Color::Red);
-	Player_Score.setCharacterSize(50);
-	Player_Score.setPosition(600, 400);
+		Player_Score.setFont(my_font);
+		string getPlayerscore = to_string(this->PLAYER.getScore()); // chuyen tu so sang chuoi
+		Player_Score.setString(getPlayerscore);
+		Player_Score.setFillColor(sf::Color::Red);
+		Player_Score.setCharacterSize(50);
+		Player_Score.setPosition(600, 400);
 
 
-	window.draw(Score);
-	window.draw(Player_Score);
+		window.draw(Score);
+		window.draw(Player_Score);
+	
 }
 
 bool game::checkBrickIsExist()
@@ -885,6 +915,7 @@ void game::SortHighScore()
 	}
 }
 
+
 void game::ItemPushBack(item tempItem)
 {
 	this->Listof_Item.push_back(tempItem);
@@ -948,7 +979,7 @@ void game::addScoreDownItem()
 
 void game::GenerateItem()
 {
-	int random = ((rand() % 10 + 1) -1) % 4;
+	int random = ((rand() % 10 + 1) - 1) % 4;
 	/*
 		randdom = 0 thi tao ra speedUp
 		randdom = 1 thi tao ra Double
@@ -968,7 +999,54 @@ void game::GenerateItem()
 	if (random == 3) {
 		this->addScoreDownItem();
 	}
+}
+void game::Instruction()
+{
+	sf::RenderWindow window(sf::VideoMode(800, 800), "Instruction");
+	while (window.isOpen())
+	{
+		////// draw  ///////
+		Event e;
+		while (window.pollEvent(e))
+		{
+			if (e.type == Event::Closed)
+				window.close();
+			if (e.type == Event::KeyPressed) {
+				if (e.key.code == sf::Keyboard::Escape) {
+					window.close();
+					return;
+				}
+				//this.PlayWitCumputer();
+			}
+		}
 
+		Font my_font;
+		my_font.loadFromFile("Assets/Font/MarkerFelt.ttf");
+		sf::Text tempText1;
+		tempText1.setFont(my_font);
+		tempText1.setString("USE LEFT AND RIGHT ARROW TO MOVE THE PADDLE IN ORDER TO CATCH BALL");
+		tempText1.setFillColor(sf::Color::Red);
+		tempText1.setCharacterSize(25);
+		tempText1.setPosition(15, 200);
+		window.draw(tempText1);
+
+		sf::Text tempText2;
+		tempText2.setFont(my_font);
+		tempText2.setString("ALL OF BRICKS ARE BROKEN, YOU WIN. CAN'T CATCH THE BALL,YOU LOSE");
+		tempText2.setFillColor(sf::Color::Red);
+		tempText2.setCharacterSize(25);
+		tempText2.setPosition(15, 300);
+		window.draw(tempText2);
+
+		sf::Text tempText3;
+		tempText3.setFont(my_font);
+		tempText3.setString("PRESS ANY KEY TO SEE HOW TO PLAY");
+		tempText3.setFillColor(sf::Color::Red);
+		tempText3.setCharacterSize(25);
+		tempText3.setPosition(15, 400);
+		window.draw(tempText3);
+		window.display();
+	}
 }
 
 game::game()

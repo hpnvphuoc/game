@@ -18,6 +18,8 @@ public:
 	float getWeight();
 	string getObjectName();
 	string getImglink();
+	
+	void PaddleAutoMove(vector<object*>& list, player& PLAYER, float time);
 
 	// di chuyen len
 	void moveLeft();

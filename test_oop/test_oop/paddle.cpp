@@ -65,6 +65,28 @@ string paddle::getImglink()
 	return this->imgLink;
 }
 
+void paddle::PaddleAutoMove(vector<object*>& list, player& PLAYER, float time)
+{
+	for (int i = 0; i < list.size(); i++) {
+		if (list[i]->getObjectName() == "ball") {
+			if (list[i]->getPosition().x>p.x) {
+				p.x = list[i]->getPosition().x;
+				if (p.x + this->weight / 2 > 600) {
+					p.x = 600 - this->weight / 2;
+				}
+			}
+			else {
+				if (list[i]->getPosition().x < p.x) {
+					p.x = list[i]->getPosition().x;
+					if (p.x - this->weight / 2 < 0) {
+						p.x = this->weight / 2;
+					}
+				}
+			}
+		}
+	}
+}
+
 void paddle::moveLeft()
 {
 	p.x = p.x - 15;
