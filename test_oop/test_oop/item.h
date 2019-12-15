@@ -5,6 +5,7 @@ class item :public object
 	float height;
 	float weight;
 	int score;
+	int v;
 public:
 	pos getPosition();
 	void move(vector<object *>&list, player &PLAYER, float time);
@@ -14,10 +15,13 @@ public:
 	string getImglink();
 	int getScore();
 
-	//xet va cham voi banh
-	bool conlisionBall(pos BallPos, float BallHeight, float BallWeight);
-	// khoi tao thanh
-	item(int x, int y, int height, int weight, int level, int score, string imgLink);
+	//xet va cham voi thanh
+	bool conlisionPaddle(pos PaddlePos, float PaddleHeight, float PaddleWeight);
+	//xet va cham voi day
+	bool conlisionBottombar(pos BottombarPos, float bottombarHeight, float bottomWeight);
+	string getItemType();
+	// khoi tao item
+	item(int x, int y, int height, int weight, int v,int score, string imgLink);
 	item();
 	~item();
 };

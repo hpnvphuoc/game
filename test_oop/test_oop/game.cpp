@@ -28,43 +28,40 @@ void game::init()
 			temp = new bar(595, 400, 800, 10, "images/rightbar.png");
 			this->objArr.push_back(temp);
 			break;
+			////////////////Khoi tao brick//////////////////////
 		case 7:
-			temp = new brick(200, 300,50,80, 3,20, "images/brick_3.png");
+			temp = new brick(140, 100,50,80, 3,20, "images/brick_3.png");
 			this->objArr.push_back(temp);
 			break;
 		case 8:
-			temp = new brick(280, 300, 50, 80, 3, 20, "images/brick_3.png");
+			temp = new brick(300, 100, 50, 80, 3, 20, "images/brick_3.png");
 			this->objArr.push_back(temp);
 			break;
 		case 9:
-			temp = new brick(360, 300, 50, 80, 3, 20, "images/brick_3.png");
+			temp = new brick(460, 100, 50, 80, 3, 20, "images/brick_3.png");
 			this->objArr.push_back(temp);
 			break;
 		case 10:
-			temp = new brick(440, 300, 50, 80, 3, 20, "images/brick_3.png");
+			temp = new brick(220, 150, 50, 80, 3, 20, "images/brick_3.png");
 			this->objArr.push_back(temp);
 			break;
 		case 11:
-			temp = new brick(520, 300, 50, 80, 3, 20, "images/brick_3.png");
+			temp = new brick(380, 150, 50, 80, 3, 20, "images/brick_3.png");
 			this->objArr.push_back(temp);
 			break;
 		case 12:
-			temp = new brick(520, 100, 50, 80, 3, 20, "images/brick_3.png");
+			temp = new brick(140, 200, 50, 80, 3, 20, "images/brick_3.png");
 			this->objArr.push_back(temp);
 			break;
 		case 13:
-			temp = new brick(360, 100, 50, 80, 3, 20, "images/brick_3.png");
+			temp = new brick(300, 200, 50, 80, 3, 20, "images/brick_3.png");
 			this->objArr.push_back(temp);
 			break;
 		case 14:
-			temp = new brick(440, 100, 50, 80, 3, 20, "images/brick_3.png");
+			temp = new brick(460, 200, 50, 80, 3, 20, "images/brick_3.png");
 			this->objArr.push_back(temp);
 			break;
 		case 15:
-			temp = new brick(200, 100, 50, 80, 3, 20, "images/brick_3.png");
-			this->objArr.push_back(temp);
-			break;
-		case 16:
 			temp = new bar(300, 5, 10, 600, "images/topbar.png");
 			this->objArr.push_back(temp);
 			break;
@@ -132,12 +129,12 @@ void game::run()
 			if (e.type == Event::Closed) {
 				window.close();
 			}
-			
+			if (checkScreen == -1) {
+				this->main_Menu.drawMenuList(window);
+				this->checkScreen = this->main_Menu.Optional_choose(e);
+			}
 		}
-		if (checkScreen == -1) {
-			this->main_Menu.drawMenuList(window);
-			this->checkScreen = this->main_Menu.Optional_choose(e);
-		}
+		
 		// player choi
 		if (checkScreen == 0) {
 			this->prepareForMap1();
@@ -151,6 +148,12 @@ void game::run()
 		//high score
 		if (this->checkScreen == 2) {
 			this->showHighScore();
+		}
+		//huongdan
+		//ket thuc
+		if (this->checkScreen == 4) {
+			window.close();
+			return;
 		}
 	}
 		// Man hinh menu chinh
@@ -233,15 +236,15 @@ void game::renderPlayerScore(RenderWindow & window)
 	window.draw(Player_Score);
 }
 
-void game::checkBrickIsExist()
+bool game::checkBrickIsExist()
 {
 	int n = this->objArr.size();
 	for (int i = 0; i < n; i++) {
 		if (objArr[i]->getObjectName() == "brick") {
-			return;
+			return true;
 		}
 	}
-	this->PLAYER.setcheckENDGAME(true);
+	return false;
 }
 
 void game::saveScore()
@@ -321,6 +324,89 @@ void game::prepareForMap1()
 			this->objArr.push_back(temp);
 			break;
 		case 2:
+			temp = new ball(300, 580, 10, -1.5, 0, 1, 2, 20, 20, "images/ball.png");
+			this->objArr.push_back(temp);
+			break;
+
+		case 4:
+			temp = new bar(5, 400, 800, 10, "images/leftbar.png");
+			this->objArr.push_back(temp);
+			break;
+		case 5:
+			temp = new bar(300, 795, 10, 600, "images/bottombar.png");
+			this->objArr.push_back(temp);
+			break;
+		case 6:
+			temp = new bar(595, 400, 800, 10, "images/rightbar.png");
+			this->objArr.push_back(temp);
+			break;
+			////////////////Khoi tao brick//////////////////////
+		case 7:
+			temp = new brick(140, 100, 50, 80, 3, 20, "images/brick_3.png");
+			this->objArr.push_back(temp);
+			break;
+		case 8:
+			temp = new brick(300, 100, 50, 80, 3, 20, "images/brick_3.png");
+			this->objArr.push_back(temp);
+			break;
+		case 9:
+			temp = new brick(460, 100, 50, 80, 3, 20, "images/brick_3.png");
+			this->objArr.push_back(temp);
+			break;
+		case 10:
+			temp = new brick(220, 150, 50, 80, 3, 20, "images/brick_3.png");
+			this->objArr.push_back(temp);
+			break;
+		case 11:
+			temp = new brick(380, 150, 50, 80, 3, 20, "images/brick_3.png");
+			this->objArr.push_back(temp);
+			break;
+		case 12:
+			temp = new brick(140, 200, 50, 80, 3, 20, "images/brick_3.png");
+			this->objArr.push_back(temp);
+			break;
+		case 13:
+			temp = new brick(300, 200, 50, 80, 3, 20, "images/brick_3.png");
+			this->objArr.push_back(temp);
+			break;
+		case 14:
+			temp = new brick(460, 200, 50, 80, 3, 20, "images/brick_3.png");
+			this->objArr.push_back(temp);
+			break;
+		case 16:
+			temp = new bar(300, 5, 10, 600, "images/topbar.png");
+			this->objArr.push_back(temp);
+			break;
+		}
+	}
+
+	//khoi tao player
+	this->PLAYER.setScore(0);
+	this->PLAYER.setcheckENDGAME(false);
+	this->PLAYER.setDouble(false);
+	this->PLAYER.setSpeedUp(false);
+	//test
+	this->addSpeedUpItem();
+	//khoi tao man hinh menu defaul = -1
+	this->checkScreen = -1;
+}
+
+
+void game::prepareForMap2()
+{
+	//xoa het de tao cac obj moi
+	this->objArr.clear();
+	// khoi tao cac obj nhu ball paddle bar , ..
+	int n = 25;
+	object *temp = NULL;
+	for (int i = 0; i < n; i++) {
+		switch (i)
+		{
+		case 1:
+			temp = new paddle(300, 600, 10, 150, "images/playerpaddle.png");
+			this->objArr.push_back(temp);
+			break;
+		case 2:
 			temp = new ball(300, 580, 10, -2, 0, 1, 2, 20, 20, "images/ball.png");
 			this->objArr.push_back(temp);
 			break;
@@ -337,62 +423,302 @@ void game::prepareForMap1()
 			temp = new bar(595, 400, 800, 10, "images/rightbar.png");
 			this->objArr.push_back(temp);
 			break;
+			////////////////Khoi tao brick//////////////////////
 		case 7:
-			temp = new brick(200, 300, 50, 80, 3, 20, "images/brick_3.png");
+			temp = new brick(180, 100, 50, 80, 3, 20, "images/brick_3.png");
 			this->objArr.push_back(temp);
 			break;
 		case 8:
-			temp = new brick(280, 300, 50, 80, 3, 20, "images/brick_3.png");
+			temp = new brick(420, 100, 50, 80, 3, 20, "images/brick_3.png");
 			this->objArr.push_back(temp);
 			break;
 		case 9:
-			temp = new brick(360, 300, 50, 80, 3, 20, "images/brick_3.png");
+			temp = new brick(100, 150, 50, 80, 3, 20, "images/brick_3.png");
 			this->objArr.push_back(temp);
 			break;
 		case 10:
-			temp = new brick(440, 300, 50, 80, 3, 20, "images/brick_3.png");
+			temp = new brick(260, 150, 50, 80, 3, 20, "images/brick_3.png");
 			this->objArr.push_back(temp);
 			break;
 		case 11:
-			temp = new brick(520, 300, 50, 80, 3, 20, "images/brick_3.png");
+			temp = new brick(340, 150, 50, 80, 3, 20, "images/brick_3.png");
 			this->objArr.push_back(temp);
 			break;
 		case 12:
-			temp = new brick(520, 100, 50, 80, 3, 20, "images/brick_3.png");
+			temp = new brick(500, 150, 50, 80, 3, 20, "images/brick_3.png");
 			this->objArr.push_back(temp);
 			break;
 		case 13:
-			temp = new brick(360, 100, 50, 80, 3, 20, "images/brick_3.png");
+			temp = new brick(100, 200, 50, 80, 3, 20, "images/brick_3.png");
 			this->objArr.push_back(temp);
 			break;
 		case 14:
-			temp = new brick(440, 100, 50, 80, 3, 20, "images/brick_3.png");
+			temp = new brick(500, 200, 50, 80, 3, 20, "images/brick_3.png");
 			this->objArr.push_back(temp);
 			break;
 		case 15:
-			temp = new brick(200, 100, 50, 80, 3, 20, "images/brick_3.png");
+			temp = new brick(180, 250, 50, 80, 3, 20, "images/brick_3.png");
 			this->objArr.push_back(temp);
 			break;
 		case 16:
+			temp = new brick(420, 250, 50, 80, 3, 20, "images/brick_3.png");
+			this->objArr.push_back(temp);
+			break;
+		case 17:
+			temp = new brick(260, 300, 50, 80, 3, 20, "images/brick_3.png");
+			this->objArr.push_back(temp);
+			break;
+		case 18:
+			temp = new brick(340, 300, 50, 80, 3, 20, "images/brick_3.png");
+			this->objArr.push_back(temp);
+			break;
+		case 19:
+			temp = new wall(300, 400, 50, 300, "images/wall_50x300.png");
+			this->objArr.push_back(temp);
+			break;
+		case 20:
 			temp = new bar(300, 5, 10, 600, "images/topbar.png");
 			this->objArr.push_back(temp);
 			break;
 		}
 	}
-
 	//khoi tao player
-	this->PLAYER.setScore(0);
 	this->PLAYER.setcheckENDGAME(false);
+	this->PLAYER.setDouble(false);
+	this->PLAYER.setSpeedUp(false);
+	//test
+	this->addSpeedUpItem();
 	//khoi tao man hinh menu defaul = -1
 	this->checkScreen = -1;
 }
 
+void game::Map2()
+{
+	RenderWindow window(VideoMode(800, 800), "Pong Game!");
+	Clock clock;
+	float timer = 0, delay = 0.01;
+	float itemTime = 0;
+	while (window.isOpen())
+	{
+		////// draw  ///////
+		Event e;	
+		while (window.pollEvent(e))
+		{
+			if (e.type == Event::Closed)
+				window.close();
+		}
+
+		float time = clock.getElapsedTime().asSeconds();
+		clock.restart();
+		timer += time;
+
+		itemTime = itemTime + timer; // tinh time de hien item
+		//tinh time cho Double Item
+		if (PLAYER.getDoulbe() == true) {
+			PLAYER.setDoubleTime(PLAYER.getDoulbeTime() + timer);
+			if (PLAYER.getDoulbe() > 8) {
+				this->PLAYER.setDouble(false);
+				PLAYER.setDoubleTime(0);
+			}
+		}
+
+		//tinh time cho SpeedUp Item
+		if (PLAYER.getSpeedUp() == true) {
+			PLAYER.setSpeedUpTime(PLAYER.getSpeedUpTime() + timer);
+			if (PLAYER.getSpeedUpTime() > 10) {
+				this->PLAYER.setSpeedUp(false);
+				PLAYER.setSpeedUpTime(0);
+			}
+		}
+
+		//tao item random moi 5 s
+		if (itemTime > 5) {
+			this->GenerateItem();
+			itemTime = 0;
+		}
+		if (timer > delay) {
+			this->objMove();
+			timer = 0;
+		}
+		//xong man 2 qua man 3
+		if (this->checkBrickIsExist() == false) {
+			this->prepareForMap3();
+			this->Map3();
+			window.close();
+			return;
+		};
+		//bi thua - dung bottom bar
+		if (PLAYER.getcheckENDGAME() == false) {
+			this->render(window);
+		}
+		else {
+			this->saveScore();
+			this->checkScreen = -1;
+			PLAYER.setcheckENDGAME(false);
+			window.close();
+			return;
+		}
+	}
+}
+
+void game::prepareForMap3()
+{
+	//xoa het de tao cac obj moi
+	this->objArr.clear();
+	// khoi tao cac obj nhu ball paddle bar , ..
+	int n = 25;
+	object *temp = NULL;
+	for (int i = 0; i < n; i++) {
+		switch (i)
+		{
+		case 1:
+			temp = new paddle(300, 600, 10, 150, "images/playerpaddle.png");
+			this->objArr.push_back(temp);
+			break;
+		case 2:
+			temp = new ball(300, 580, 10, 1.5, 0, 1, 2, 20, 20, "images/ball.png");
+			this->objArr.push_back(temp);
+			break;
+
+		case 4:
+			temp = new bar(5, 400, 800, 10, "images/leftbar.png");
+			this->objArr.push_back(temp);
+			break;
+		case 5:
+			temp = new bar(300, 795, 10, 600, "images/bottombar.png");
+			this->objArr.push_back(temp);
+			break;
+		case 6:
+			temp = new bar(595, 400, 800, 10, "images/rightbar.png");
+			this->objArr.push_back(temp);
+			break;
+			////////////////Khoi tao brick//////////////////////
+		case 7:
+			temp = new brick(300, 150, 50, 80, 3, 20, "images/brick_3.png");
+			this->objArr.push_back(temp);
+			break;
+		case 8:
+			temp = new brick(220, 200, 50, 80, 3, 20, "images/brick_3.png");
+			this->objArr.push_back(temp);
+			break;
+		case 9:
+			temp = new brick(380, 200, 50, 80, 3, 20, "images/brick_3.png");
+			this->objArr.push_back(temp);
+			break;
+		case 10:
+			temp = new brick(300, 250, 50, 80, 3, 20, "images/brick_3.png");
+			this->objArr.push_back(temp);
+			break;
+		case 11:
+			temp = new wall(140, 100, 50, 80, "images/wall_50x80.png");
+			cout << temp->getPosition().x;
+			this->objArr.push_back(temp);
+			break;
+		case 12:
+			temp = new wall(460, 100, 50, 80, "images/wall_50x80.png");
+			this->objArr.push_back(temp);
+			break;
+		case 13:
+			temp = new wall(460, 300, 50, 80, "images/wall_50x80.png");
+			this->objArr.push_back(temp);
+			break;
+		case 14:
+			temp = new wall(140, 300, 50, 80, "images/wall_50x80.png");
+			this->objArr.push_back(temp);
+			break;
+		case 20:
+			temp = new bar(300, 5, 10, 600, "images/topbar.png");
+			this->objArr.push_back(temp);
+			break;
+		}
+	}
+	//khoi tao player
+	this->PLAYER.setScore(0);
+	this->PLAYER.setcheckENDGAME(false);
+	this->PLAYER.setDouble(false);
+	this->PLAYER.setSpeedUp(false);
+	//test
+	this->addSpeedUpItem();
+	//khoi tao man hinh menu defaul = -1
+	this->checkScreen = -1;
+}
+
+void game::Map3()
+{
+	RenderWindow window(VideoMode(800, 800), "Pong Game!");
+	Clock clock;
+	float timer = 0, delay = 0.01;
+	float itemTime = 0;
+	while (window.isOpen())
+	{
+		////// draw  ///////
+		Event e;
+		while (window.pollEvent(e))
+		{
+			if (e.type == Event::Closed)
+				window.close();
+		}
+
+		float time = clock.getElapsedTime().asSeconds();
+		clock.restart();
+		timer += time;
+
+		itemTime = itemTime + timer; // tinh time de hien item
+		//tinh time cho Double Item
+		if (PLAYER.getDoulbe() == true) {
+			PLAYER.setDoubleTime(PLAYER.getDoulbeTime() + timer);
+			if (PLAYER.getDoulbe() > 5) {
+				this->PLAYER.setDouble(false);
+				PLAYER.setDoubleTime(0);
+			}
+		}
+
+		//tinh time cho SpeedUp Item
+		if (PLAYER.getSpeedUp() == true) {
+			PLAYER.setSpeedUpTime(PLAYER.getSpeedUpTime() + timer);
+			if (PLAYER.getSpeedUpTime() > 10) {
+				this->PLAYER.setSpeedUp(false);
+				PLAYER.setSpeedUpTime(0);
+			}
+		}
+
+		//tao item random moi 5 s
+		if (itemTime > 5) {
+			this->GenerateItem();
+			itemTime = 0;
+		}
+		if (timer > delay) {
+			this->objMove();
+			timer = 0;
+		}
+		//Ket thuc man 3 xong game save diem
+		if (this->checkBrickIsExist() == false) {
+			this->saveScore();
+			this->checkScreen = -1;
+			PLAYER.setcheckENDGAME(false);
+			window.close();
+			return;
+		};
+		//bi thua
+		if (PLAYER.getcheckENDGAME() == false) {
+			this->render(window);
+		}
+		else {
+			this->saveScore();
+			this->checkScreen = -1;
+			PLAYER.setcheckENDGAME(false);
+			window.close();
+			return;
+		}
+	}
+}
 
 void game::Map1( )
 {
 	RenderWindow window(VideoMode(800, 800), "Pong Game!");
 	Clock clock;
 	float timer = 0, delay = 0.01;
+	float itemTime=0;
 	while (window.isOpen())
 	{
 		////// draw  ///////
@@ -406,11 +732,43 @@ void game::Map1( )
 			float time = clock.getElapsedTime().asSeconds();
 			clock.restart();
 			timer += time;
+
+			itemTime = itemTime + timer; // tinh time de hien item
+			//tinh time cho Double Item
+			if (PLAYER.getDoulbe() == true) {
+				PLAYER.setDoubleTime(PLAYER.getDoulbeTime()+timer) ;
+				if (PLAYER.getDoulbe()>10) {
+					this->PLAYER.setDouble(false);
+					PLAYER.setDoubleTime(0) ;
+				}
+			}
+
+			//tinh time cho SpeedUp Item
+			if (PLAYER.getSpeedUp() == true) {
+				PLAYER.setSpeedUpTime(PLAYER.getSpeedUpTime()+timer);
+				if (PLAYER.getSpeedUpTime() > 10) {
+					this->PLAYER.setSpeedUp(false);
+					PLAYER.setSpeedUpTime(0);
+				}
+			}
+
+			//tao item random moi 5 s
+			if (itemTime > 5) {
+				this->GenerateItem();
+				itemTime = 0;
+			}
 			if (timer > delay) {
 				this->objMove();
 				timer = 0;
 			}
-			this->checkBrickIsExist();
+			//xong man 1 qua man 2
+			if (this->checkBrickIsExist() == false) {
+				this->prepareForMap2();
+				this->Map2();
+				window.close();
+				return;
+			};
+			//bi thua
 			if (PLAYER.getcheckENDGAME() == false) {
 				this->render(window);
 			}
@@ -457,7 +815,7 @@ void game::showHighScore()
 				window.close();
 			if (e.type == Event::KeyPressed) {
 				if (e.key.code == sf::Keyboard::X) {
-					cout << "haha";
+					this->checkScreen = -1;
 					window.close();
 					return;
 				}
@@ -527,6 +885,92 @@ void game::SortHighScore()
 	}
 }
 
+void game::ItemPushBack(item tempItem)
+{
+	this->Listof_Item.push_back(tempItem);
+}
+
+void game::addSpeedUpItem()
+{
+	object *temp = NULL;
+	int x = rand() % 500 + 50;
+	int y = 0;
+	int height = 30;
+	int weight = 30;
+	int score = 50;
+	int v = 3;
+	string IMGlink="images/SpeedUp.png";
+	temp = new item(x, y, height, weight,v, score, IMGlink);
+	this->objArr.push_back(temp);
+}
+
+void game::addDoubleItem()
+{
+	object *temp = NULL;
+	int x = rand() % 500 + 50;
+	int y = 0;
+	int height = 30;
+	int weight = 30;
+	int score = 50;
+	int v = 3;
+	string IMGlink = "images/Double.png";
+	temp = new item(x, y, height, weight, v, score, IMGlink);
+	this->objArr.push_back(temp);
+}
+
+void game::addScoreUpItem()
+{
+	object *temp = NULL;
+	int x = rand() % 500 + 50;
+	int y = 0;
+	int height = 30;
+	int weight = 30;
+	int score = 50;
+	int v = 3;
+	string IMGlink = "images/ScoreUp.png";
+	temp = new item(x, y, height, weight, v, score, IMGlink);
+	this->objArr.push_back(temp);
+}
+
+void game::addScoreDownItem()
+{
+	object *temp = NULL;
+	int x = rand() % 650 + 50;
+	int y = 0;
+	int height = 30;
+	int weight = 30;
+	int score = -50;
+	int v = 3;
+	string IMGlink = "images/ScoreDown.png";
+	temp = new item(x, y, height, weight, v, score, IMGlink);
+	this->objArr.push_back(temp);
+}
+
+void game::GenerateItem()
+{
+	int random = ((rand() % 10 + 1) -1) % 4;
+	/*
+		randdom = 0 thi tao ra speedUp
+		randdom = 1 thi tao ra Double
+		randdom = 2 thi tao ra ScoreUp
+		randdom = 3 thi tao ra ScoreDown
+
+	*/
+	if (random == 0) {
+		this->addSpeedUpItem();
+	}
+	if (random == 1) {
+		this->addDoubleItem();
+	}
+	if (random == 2) {
+		this->addScoreUpItem();
+	}
+	if (random == 3) {
+		this->addScoreDownItem();
+	}
+
+}
+
 game::game()
 {
 	ifstream fileInput("data/highscore.txt");
@@ -558,9 +1002,16 @@ game::~game()
 	fstream outfile;
 	outfile.open("data/highscore.txt", ios::out);
 	int n = this->HighScore.size();
-	for (int i = 0; i < n; i++) {
+	int Top10;
+	if (n > 10) {
+		Top10 = 10;
+	}
+	else {
+		Top10 = n;
+	}
+	for (int i = 0; i < Top10; i++) {
 		outfile << this->HighScore[i].getName()<<endl;
-		if (i != n - 1) {
+		if (i != Top10 - 1) {
 			outfile << this->HighScore[i].getScore() << endl;
 		}
 		else {

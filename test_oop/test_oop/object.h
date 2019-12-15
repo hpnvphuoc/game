@@ -3,9 +3,12 @@
 #include<iostream>
 #include<string>
 #include<vector>
-#include "player.h"
+#include"player.h"
 using namespace std;
-
+struct pos
+{
+	float x, y;
+};
 class object
 {
 protected:

@@ -2,40 +2,48 @@
 
 
 
-bool item::conlisionBall(pos BallPos, float BallHeight, float BallWeight)
+
+
+bool item::conlisionPaddle(pos PaddlePos, float PaddleHeight, float PaddleWeight)
 {
-	//va cham tren
-	if (BallPos.y + BallHeight / 2 > p.y - height / 2 && BallPos.y + BallHeight / 2 < p.y + height / 2) {
-		if (BallPos.x > p.x - weight / 2 && BallPos.x < p.x + weight / 2) {
-			cout << "tren" << endl;
+	if (p.y + height / 2 > PaddlePos.y - PaddleHeight / 2 && p.y - height / 2 < PaddlePos.y + PaddleHeight) {
+		if (p.x + weight / 2 > PaddlePos.x - PaddleWeight / 2 && p.x - weight / 2 < PaddlePos.x + PaddleWeight / 2) {
 			return true;
 		}
 	};
-	//va cham duoi
-	if (BallPos.y - BallHeight / 2 < p.y + height / 2 && BallPos.y - BallHeight / 2 > p.y - height / 2) {
-		if (BallPos.x > p.x - weight / 2 && BallPos.x < p.x + weight / 2) {
-			cout << "duoi" << endl;
-			return true;
-		}
-	}
-	//va cham  mat phai
-	if (BallPos.x - BallWeight / 2 < p.x + weight / 2 && BallPos.x - BallWeight / 2 > p.x - weight / 2) {
-		if (BallPos.y > p.y - height / 2 && BallPos.y < p.y + height / 2) {
-			cout << "phai" << endl;
-			return true;
-		}
-	}
-	//va cham mat trai
-	if (BallPos.x + BallWeight / 2 > p.x - weight / 2 && BallPos.x + BallWeight / 2 < p.x + weight / 2) {
-		if (BallPos.y > p.y - height / 2 && BallPos.y < p.y + height / 2) {
-			cout << "trai" << endl;
-			return true;
-		}
+	return false;
+}
+
+bool item::conlisionBottombar(pos BottombarPos, float bottombarHeight, float bottomWeight)
+{
+	if (p.y + height / 2 > BottombarPos.y - bottombarHeight / 2) {
+		return true;
 	}
 	return false;
 }
 
-item::item(int x, int y, int height, int weight, int level, int score, string imgLink)
+string item::getItemType()
+{
+	string s = this->imgLink;
+	string ItemType="";
+	bool checkStart=false;
+	int k = 0;
+	for (int i = 0; i < s.length(); i++) {
+		if (s[i] == '.') {
+			checkStart = false;
+		}
+		if (checkStart == true) {
+			ItemType = ItemType+ s[i];
+			k++;
+		}
+		if (s[i] == '/') {
+			checkStart = true;
+		}
+	}
+	return ItemType;
+}
+
+item::item(int x, int y, int height, int weight,int v, int score, string imgLink)
 {
 	this->p.x = x;
 	this->p.y = y;
@@ -43,6 +51,7 @@ item::item(int x, int y, int height, int weight, int level, int score, string im
 	this->weight = weight;
 	this->score = score;
 	this->imgLink = imgLink;
+	this->v = v;
 }
 
 item::item()
@@ -61,6 +70,40 @@ pos item::getPosition()
 
 void item::move(vector<object*>& list, player &PLAYER, float time)
 {
+	//di chuyen roi xuong
+	this->p.y = this->p.y + v;
+	//xet va cham voi paddle
+	int n = list.size();
+	for (int i = 0; i < n; i++) {
+		//gap thanh paddle
+		if (list[i]->getObjectName() == "playerpaddle") {
+			if (conlisionPaddle(list[i]->getPosition(), list[i]->getHeight(), list[i]->getWeight()) == true) {
+				//nhap item vao player
+				if (this->getItemType() == "Double") {
+					PLAYER.setDouble(true);
+					PLAYER.setDoubleTime(0);
+				}
+				if (this->getItemType() == "SpeedUp") {
+					PLAYER.setSpeedUp(true);
+					PLAYER.setSpeedUpTime(0);
+				}
+				if (this->getItemType() == "ScoreUp") {
+
+					PLAYER.gainScore(this->getScore());
+				}
+				if (this->getItemType() == "ScoreDown") {
+					PLAYER.gainScore(this->getScore());
+				}
+				this->imgLink = "";
+			}
+		}
+		//gap day
+		if (list[i]->getObjectName() == "bottombar") {
+			if (conlisionBottombar(list[i]->getPosition(), list[i]->getHeight(), list[i]->getWeight()) == true) {
+				this->imgLink = "";
+			}
+		}
+	}
 }
 
 float item::getHeight()

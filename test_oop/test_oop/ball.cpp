@@ -66,7 +66,12 @@ pos ball::getPosition()
 void ball::move(vector<object *>&list, player &PLAYER, float time)
 {
 	// xet va cham trai phai tren duoi
-	p.x = p.x + v;
+	if (PLAYER.getSpeedUp() == true) {
+		p.x = p.x + v*1.5;
+	}
+	else {
+		p.x = p.x + v;
+	}
 	p.y = a * p.x + b;
 	int n = list.size();
 	for (int i = 0; i < n; i++) {
