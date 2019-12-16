@@ -8,14 +8,17 @@ class brick:public object
 	int level;
 	int score;
 public:
+	//virtual method viet lai cua class obj
 	pos getPosition();
 	void move(vector<object *>&list,  player &PLAYER, float time);
 	float getHeight();
 	float getWeight();
 	string getObjectName();
 	string getImglink();
-	int getLevel();
-	int getScore();
+
+	// method cua class bric;
+	int getLevel(); // lay thuoc tinh level
+	int getScore(); // lay thuoc tinh score
 
 	//xet va cham voi banh
 	bool conlisionBall(pos BallPos, float BallHeight, float BallWeight);

@@ -15,8 +15,8 @@ class player
 	float SpeedUpTime;
 	float DoubleTime;
 public:
-	//get cac thuoc tinh
-	string getName();
+	///////get cac thuoc tinh////////
+	string getName(); 
 	int getScore();
 	bool getcheckENDGAME(); 
 	bool getSpeedUp();
@@ -24,7 +24,8 @@ public:
 	float getDoulbeTime();
 	float getSpeedUpTime();
 	string getTyperPlayer();
-	//set cac thuoc tinh
+
+	////////set cac thuoc tinh////////
 	void setName(string name);
 	void setScore(int score);
 	void setcheckENDGAME(bool check);
@@ -33,8 +34,11 @@ public:
 	void setDoubleTime(float x);
 	void setSpeedUpTime(float x);
 	string setPlayerType(string x);
+	//////////ham tinh diem/////////
 	void gainScore(int x);
+	//ham reset lai khi player thua hoac thang
 	void reset();
+	// con-destructor
 	player(string, string,int,bool,bool,bool,float,float);
 	player();
 };

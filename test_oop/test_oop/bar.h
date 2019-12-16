@@ -5,6 +5,7 @@ class bar:public object
 	float height;
 	float weight;
 public:
+	//virtual method viet lai cua class obj
 	 pos getPosition();
 	void move(vector<object *>&list,  player &PLAYER, float time);
 	float getHeight();

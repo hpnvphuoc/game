@@ -4,6 +4,7 @@
 
 wall::wall(int x, int y, int height, int weight, string imgLink)
 {
+	//Khoi tao cac thuoc tinh
 	this->p.x = x;
 	this->p.y = y;
 	this->height = height;

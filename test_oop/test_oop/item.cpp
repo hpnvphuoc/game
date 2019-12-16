@@ -6,7 +6,9 @@
 
 bool item::conlisionPaddle(pos PaddlePos, float PaddleHeight, float PaddleWeight)
 {
+	//xet xem toa do y  cua trai banh co nam giua do cao cua thanh truot hay ko
 	if (p.y + height / 2 > PaddlePos.y - PaddleHeight / 2 && p.y - height / 2 < PaddlePos.y + PaddleHeight) {
+		// xet xem toa do x co nam giua thanh truot hay ko
 		if (p.x + weight / 2 > PaddlePos.x - PaddleWeight / 2 && p.x - weight / 2 < PaddlePos.x + PaddleWeight / 2) {
 			return true;
 		}
@@ -16,6 +18,7 @@ bool item::conlisionPaddle(pos PaddlePos, float PaddleHeight, float PaddleWeight
 
 bool item::conlisionBottombar(pos BottombarPos, float bottombarHeight, float bottomWeight)
 {
+	// p.y cua item vuot qua mat tren cua thanh duoi
 	if (p.y + height / 2 > BottombarPos.y - bottombarHeight / 2) {
 		return true;
 	}
@@ -24,10 +27,13 @@ bool item::conlisionBottombar(pos BottombarPos, float bottombarHeight, float bot
 
 string item::getItemType()
 {
+	// lay loai item duoi vao imglink
 	string s = this->imgLink;
 	string ItemType="";
 	bool checkStart=false;
 	int k = 0;
+	// lay tu ki tu "/" den ki tu '.'
+	// vi du data/ScoreUp.txt - > ScoreUP
 	for (int i = 0; i < s.length(); i++) {
 		if (s[i] == '.') {
 			checkStart = false;

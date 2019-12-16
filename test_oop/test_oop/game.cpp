@@ -1,121 +1,14 @@
 #include "game.h"
 void game::init()
 {
-	// khoi tao cac obj nhu ball paddle bar , ..
-	int n = 20;
-	object *temp = NULL;
-	for (int i = 0; i < n; i++) {
-		switch (i)
-		{
-		case 1:
-			temp = new ball(300, 580, 10, -2, 0, 1, 2, 20, 20, "images/ball.png");
-			this->objArr.push_back(temp);
-			break;
-		case 2:
-			temp = new paddle(300, 600, 10, 150, "images/playerpaddle.png");
-			this->objArr.push_back(temp);
-			break;
-		
-		case 4:
-			temp = new bar(5, 400, 800, 10, "images/leftbar.png");
-			this->objArr.push_back(temp);
-			break;
-		case 5:
-			temp = new bar(300, 795, 10, 600, "images/bottombar.png");
-			this->objArr.push_back(temp);
-			break;
-		case 6:
-			temp = new bar(595, 400, 800, 10, "images/rightbar.png");
-			this->objArr.push_back(temp);
-			break;
-			////////////////Khoi tao brick//////////////////////
-		case 7:
-			temp = new brick(140, 100,50,80, 3,20, "images/brick_3.png");
-			this->objArr.push_back(temp);
-			break;
-		case 8:
-			temp = new brick(300, 100, 50, 80, 3, 20, "images/brick_3.png");
-			this->objArr.push_back(temp);
-			break;
-		case 9:
-			temp = new brick(460, 100, 50, 80, 3, 20, "images/brick_3.png");
-			this->objArr.push_back(temp);
-			break;
-		case 10:
-			temp = new brick(220, 150, 50, 80, 3, 20, "images/brick_3.png");
-			this->objArr.push_back(temp);
-			break;
-		case 11:
-			temp = new brick(380, 150, 50, 80, 3, 20, "images/brick_3.png");
-			this->objArr.push_back(temp);
-			break;
-		case 12:
-			temp = new brick(140, 200, 50, 80, 3, 20, "images/brick_3.png");
-			this->objArr.push_back(temp);
-			break;
-		case 13:
-			temp = new brick(300, 200, 50, 80, 3, 20, "images/brick_3.png");
-			this->objArr.push_back(temp);
-			break;
-		case 14:
-			temp = new brick(460, 200, 50, 80, 3, 20, "images/brick_3.png");
-			this->objArr.push_back(temp);
-			break;
-		case 15:
-			temp = new bar(300, 5, 10, 600, "images/topbar.png");
-			this->objArr.push_back(temp);
-			break;
-		/*case 0:
-			temp = new boardgame(1032/2,684/2,684,1032,"images/background.png");
-			this->objArr.push_back(temp);
-			break;
-		case 1:
-			temp = new player(632, 80, 72, 72, 0, "images/0.png");
-			this->objArr.push_back(temp);
-			break;
-		case 2:
-			temp = new bar(1032 / 2, 13 / 2, 13, 1032, "images/topbar.png");
-			this->objArr.push_back(temp);
-			break;
-		case 3:
-			temp = new bar(13 / 2, 684 / 2, 684, 13, "images/leftbar.png");
-			this->objArr.push_back(temp);
-			break;
-		case 4:
-			temp = new bar(1032 / 2, 684 - 13 / 2, 13, 1032, "images/bottombar.png");
-			this->objArr.push_back(temp);
-			break;
-		case 5:
-			temp = new bar(1032 - 13 / 2, 684 / 2, 684, 13, "images/rightbar.png");
-			this->objArr.push_back(temp);
-			break;
-		case 6:
-			temp = new paddle(40,684/2,100,25,"images/leftpaddle.png");
-			this->objArr.push_back(temp);
-			break;
-		case 7:
-			temp = new paddle(1032-40, 684 / 2, 100, 25,"images/rightpaddle.png");
-			this->objArr.push_back(temp);
-			break;
-		case 8:
-			temp = new player(400,80,72,72,0, "images/0.png");
-			this->objArr.push_back(temp);
-			break;
-		case 9:
-			temp = new ball(1032 / 2, 684 / 2, 10, 0.32, 0, 1,5, 20, 20, "images/ball.png");
-			this->objArr.push_back(temp);
-			break;
-		default:
-			break;*/
-
-		}
-	}
-	//khoi tao man hinh menu defaul = -1
+	
 }
 
 void game::run()
 {
+	// tao man hinh win dow
 	RenderWindow window(VideoMode(800	,800), "Pong Game!");
+	// chi nhan 1 key khi holding
 	window.setKeyRepeatEnabled(false);
 	Clock clock;
 	float timer = 0, delay = 0.01;
@@ -123,35 +16,46 @@ void game::run()
 	{
 		////// draw  ///////
 		Event e;
+		//bat su kien
 		while (window.pollEvent(e))
 		{
+			// click dau x phai ben phai thi thoat
 			if (e.type == Event::Closed) {
 				window.close();
 			}
+			// neu man hinh bang -1
 			if (checkScreen == -1) {
+				// ve man hinh chinh
 				this->main_Menu.drawMenuList(window);
+				// check xem chon optional nao
 				this->checkScreen = this->main_Menu.Optional_choose(e);
 			}
+			// neu nha escape thi thoat ra lai man hinh chinh
 			if (e.type == Event::KeyPressed && e.key.code == sf::Keyboard::Escape) {
 				this->checkScreen = -1;
 			}
 		}
-
+		// chon play
 		if (checkScreen == 0) {
+			//bat dau o round 1
 			round = 1;
+			// Chuc nang choi la "Player"  - phan biet voi "Computer"
 			this->PLAYER.setPlayerType("Player");
+			// chuan bi map 1
 			this->prepareForMap1();
+			// choi map 1
 			this->Map1();
 		}
-		// computer choi 
+		// Hien diem cao nhat 
 		if (this->checkScreen == 1) {
 			this->showHighScore();
 			
 		}
-		//high score
+		//Hien huong dan
 		if (this->checkScreen == 2) {
 			this->Instruction();
 		}
+		// bam exit de thoat tro choi
 		if (3 == this->checkScreen) {
 			window.close();
 		}
@@ -188,7 +92,9 @@ void game::render(RenderWindow& window, bool IsComputer)
 			tempTexture.setSmooth(true);
 			//Set position object
 			Sprite tempSprite(tempTexture);
+			// set position x
 			tempPos.x = this->objArr[i]->getPosition().x - this->objArr[i]->getWeight() / 2;
+			//set position y
 			tempPos.y = this->objArr[i]->getPosition().y - this->objArr[i]->getHeight() / 2;
 			tempSprite.setPosition(tempPos.x, tempPos.y);
 			window.draw(tempSprite);
@@ -217,8 +123,6 @@ void game::render(RenderWindow& window, bool IsComputer)
 		window.display();
 
 	}
-	
-
 }
 
 void game::objMove()
@@ -233,6 +137,7 @@ void game::objMove()
 	
 	//check xem co gach nao xoa chua
 	int k = 0;
+	// neu obj nao co imglink="" thi xoa (bao gom brick va item)
 	while (k < n) {
 		if (this->objArr[k]->getImglink() == "") {
 			this->objArr.erase(objArr.begin() + k);
@@ -669,7 +574,7 @@ void game::Map2()
 			//tinh time cho Double Item
 			if (PLAYER.getDoulbe() == true) {
 				PLAYER.setDoubleTime(PLAYER.getDoulbeTime() + timer);
-				if (PLAYER.getDoulbe() > 10) {
+				if (PLAYER.getDoulbeTime() > 10) {
 					this->PLAYER.setDouble(false);
 					PLAYER.setDoubleTime(0);
 				}
@@ -834,7 +739,7 @@ void game::Map3()
 			//tinh time cho Double Item
 			if (PLAYER.getDoulbe() == true) {
 				PLAYER.setDoubleTime(PLAYER.getDoulbeTime() + timer);
-				if (PLAYER.getDoulbe() > 10) {
+				if (PLAYER.getDoulbeTime() > 10) {
 					this->PLAYER.setDouble(false);
 					PLAYER.setDoubleTime(0);
 				}
@@ -917,7 +822,7 @@ void game::Map1( )
 			//tinh time cho Double Item
 			if (PLAYER.getDoulbe() == true) {
 				PLAYER.setDoubleTime(PLAYER.getDoulbeTime() + timer);
-				if (PLAYER.getDoulbe() > 10) {
+				if (PLAYER.getDoulbeTime() > 10) {
 					this->PLAYER.setDouble(false);
 					PLAYER.setDoubleTime(0);
 				}
@@ -1098,32 +1003,33 @@ void game::SortHighScore()
 
 void game::ItemPushBack(item tempItem)
 {
-	this->Listof_Item.push_back(tempItem);
+	//this->Listof_Item.push_back(tempItem);
 }
 
 void game::addSpeedUpItem()
 {
 	object *temp = NULL;
-	int x = rand() % 500 + 50;
-	int y = 0;
-	int height = 30;
-	int weight = 30;
-	int score = 50;
-	int v = 3;
+	int x = rand() % 500 + 50; // tao speedup item voi toa do trong khoang 50->550 (x)
+	int y = 0; // y = 0 item roi tu tren xuong
+	int height = 30; // chieu dai item
+	int weight = 30; // chieu rong item
+	int score = 50; // nhat item duoc 50 diem
+	int v = 3; // van toc roi
 	string IMGlink="images/SpeedUp.png";
 	temp = new item(x, y, height, weight,v, score, IMGlink);
+	// push item vao list
 	this->objArr.push_back(temp);
 }
 
 void game::addDoubleItem()
 {
-	object *temp = NULL;
-	int x = rand() % 500 + 50;
-	int y = 0;
-	int height = 30;
-	int weight = 30;
-	int score = 50;
-	int v = 3;
+	object *temp = NULL; 
+	int x = rand() % 500 + 50; // toa do x trong khaong 50 -> 550
+	int y = 0; // toa do y bang 0
+	int height = 30; // chieu dai item
+	int weight = 30;// chieu rong item
+	int score = 50; //nhat item duoc 50 diem
+	int v = 3; // van toc roi
 	string IMGlink = "images/Double.png";
 	temp = new item(x, y, height, weight, v, score, IMGlink);
 	this->objArr.push_back(temp);
@@ -1132,12 +1038,12 @@ void game::addDoubleItem()
 void game::addScoreUpItem()
 {
 	object *temp = NULL;
-	int x = rand() % 500 + 50;
-	int y = 0;
-	int height = 30;
-	int weight = 30;
-	int score = 50;
-	int v = 3;
+	int x = rand() % 500 + 50;// toa do x trong khaong 50 -> 550
+	int y = 0;// toa do y bang 0
+	int height = 30;// chieu dai item
+	int weight = 30; // chieu rong item
+	int score = 50; //nhat item duoc 50 diem
+	int v = 3;// van toc roi
 	string IMGlink = "images/ScoreUp.png";
 	temp = new item(x, y, height, weight, v, score, IMGlink);
 	this->objArr.push_back(temp);
@@ -1146,12 +1052,12 @@ void game::addScoreUpItem()
 void game::addScoreDownItem()
 {
 	object *temp = NULL;
-	int x = rand() % 650 + 50;
-	int y = 0;
-	int height = 30;
-	int weight = 30;
-	int score = -50;
-	int v = 3;
+	int x = rand() % 500 + 50;// toa do x trong khaong 50 -> 550
+	int y = 0;// toa do y bang 0
+	int height = 30;// chieu dai item
+	int weight = 30; // chieu rong item
+	int score = -50;//nhat item duoc 50 diem
+	int v = 3;// van toc roi
 	string IMGlink = "images/ScoreDown.png";
 	temp = new item(x, y, height, weight, v, score, IMGlink);
 	this->objArr.push_back(temp);
@@ -1261,10 +1167,13 @@ game::game()
 
 game::~game()
 {
+
+	// viet lai highScore xuong file
 	fstream outfile;
 	outfile.open("data/highscore.txt", ios::out);
 	int n = this->HighScore.size();
 	int Top10;
+	// viet lai top 10
 	if (n > 10) {
 		Top10 = 10;
 	}
@@ -1272,7 +1181,11 @@ game::~game()
 		Top10 = n;
 	}
 	for (int i = 0; i < Top10; i++) {
+		// moi player luu 2 dong
+		// 1- Ten
+		// 2- diem
 		outfile << this->HighScore[i].getName()<<endl;
+		//neu dong cuoi thi ko xuong dong
 		if (i != Top10 - 1) {
 			outfile << this->HighScore[i].getScore() << endl;
 		}

@@ -11,19 +11,19 @@ public:
 	//constructor
 	paddle(float x, float y, float height, float weight,string Imglink);
 	
-	//virtual
+	//virtual method viet lai cua class object
 	pos getPosition();
 	void move(vector<object *>&list, player &PLAYER, float time);
 	float getHeight();
 	float getWeight();
 	string getObjectName();
 	string getImglink();
-	
+	 //ham tu di chen thanh truoc
 	void PaddleAutoMove(vector<object*>& list, player& PLAYER, float time);
 
-	// di chuyen len
+	// di chuyen trai
 	void moveLeft();
-	// di chuyen xuong
+	// di chuyen phai
 	void moveRight();
 };
 

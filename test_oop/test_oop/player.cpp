@@ -83,6 +83,7 @@ void player::setSpeedUpTime(float x)
 
 void player::gainScore(int x)
 {
+	//Neu nhat duoc vat pham Double thi nhan 2 diem
 	if (this->Double == true) {
 		this->score = this->score + 2*x;
 	}

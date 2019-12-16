@@ -46,15 +46,15 @@ ball::ball(int x, int y, int r, float a, float b, int direction, float v,float h
 {
 	// khoi tao
 	this->imgLink = imgLink;
-	p.x = x;
-	p.y = y;
-	this->height = height;
-	this->weight = weight;
-	this->a = float(a);
-	this->b = float(p.y) - float(a) * p.x;
-	this->r = r;
-	this->direction = direction;
-	this->v = v;
+	p.x = x; // toa do x
+	p.y = y; // toa do y
+	this->height = height; //  chieu cao
+	this->weight = weight; // chieu dai
+	this->a = float(a);  // goa toa do trong y=ax + b
+	this->b = float(p.y) - float(a) * p.x; // b trong y=ax + b
+	this->r = r; // ban kinh qua banh
+	this->direction = direction;  // huong chay qua banh
+	this->v = v;  // van toc qua banh
 }
 
 
@@ -65,7 +65,7 @@ pos ball::getPosition()
 
 void ball::move(vector<object *>&list, player &PLAYER, float time)
 {
-	// xet va cham trai phai tren duoi
+	// TH nhat duoc vat pham speedUp thi tang toc do len 1.5
 	if (PLAYER.getSpeedUp() == true) {
 		p.x = p.x + v*1.5;
 	}
@@ -74,38 +74,41 @@ void ball::move(vector<object *>&list, player &PLAYER, float time)
 	}
 	p.y = a * p.x + b;
 	int n = list.size();
+	// xet va cham cac obj khac nhu trai, phai, gach , tuong
 	for (int i = 0; i < n; i++) {
+		// xet va cham voi thanh phai
 		if (list[i]->getObjectName() == "rightbar") {
 			conlisionRightbar(list[i]->getPosition(), list[i]->getHeight(), list[i]->getWeight());
 		}
+		// xet va cham voi thanh tren
 		if (list[i]->getObjectName() == "topbar") {
 			conlisionTopbar(list[i]->getPosition(), list[i]->getHeight(), list[i]->getWeight());
 		}
+		// xet va cham voi thanh ben trai
 		if (list[i]->getObjectName() == "leftbar") {
-
 			conlisionLeftbar(list[i]->getPosition(), list[i]->getHeight(), list[i]->getWeight());
 		}
+		// xet va cham voi thanh truot
 		if (list[i]->getObjectName() == "playerpaddle") {
 			conlisionPaddle(list[i]->getPosition(), list[i]->getHeight(), list[i]->getWeight());
 		}
-		//thua
+		//xet va cham voi thanh duoi -> neu dung thanh duoi la thua
 		if (list[i]->getObjectName() == "bottombar") {
 			if (conlisionBottombar(list[i]->getPosition(), list[i]->getHeight(), list[i]->getWeight()) == true) {
 				PLAYER.setcheckENDGAME(true);
 			}
 		}
+		// xet va cham voi obj "wall"
 		if (list[i]->getObjectName() == "wall") {
 			conlisionWall(list[i]->getPosition(), list[i]->getHeight(), list[i]->getWeight());
 		}
+		// xet va cham voi obj "brick"
 		if (list[i]->getObjectName() == "brick") {
 			if (conlisionBrick(list[i]->getPosition(), list[i]->getHeight(), list[i]->getWeight()) == true) {
 				//this->breakBrick(i, list);
 			}
 		}
 	}
-
-	this->CheckScore(list);
-	
 }
 
 float ball::getHeight()
@@ -130,9 +133,11 @@ string ball::getImglink()
 
 void ball::conlisionTopbar(pos TopbarPos, float TopbarHeight, float TopbarWeight)
 {
+	// xet xem phan tren cua qua banh co nho hon phan duoi cua thanh tren hay ko
 	if (p.y - height/2 < TopbarPos.y+TopbarHeight/2) {
-		int tempy = height / 2 + TopbarPos.y + TopbarHeight / 2;
-		b = 2 * tempy - b;;
+		//TH biet y
+		int tempy = height / 2 + TopbarPos.y + TopbarHeight / 2; // gan tam y
+		b = 2 * tempy - b; // tim b trong duong thang moi y= -ax +b'
 		a = -a;
 		v = v
 			;
@@ -141,32 +146,37 @@ void ball::conlisionTopbar(pos TopbarPos, float TopbarHeight, float TopbarWeight
 
 bool ball::conlisionBottombar(pos BottombarPos, float bottombarHeight, float bottomWeight)
 {
+	// xet xem phan duoi cua qua banh co lon hon phan tren cua thanh duoi hay ko
 	if (p.y + height / 2 > BottombarPos.y - bottombarHeight / 2) {
-		return true;
+		return true; // tra ve true false de xet thua 
 	}
 	return false;
 }
 
 void ball::conlisionRightbar(pos RightbarPos, float RightbarHeight, float RightbarWeight)
 {
+	//xet xem ben phai cua trai banh co lon hon ben trai cua thanh phai hay ko
 	if (p.x + weight / 2 > RightbarPos.x - RightbarWeight / 2) {
 		if (p.y + height / 2 > RightbarPos.y - RightbarHeight / 2 && p.y - height / 2 < RightbarPos.y + RightbarHeight / 2) 
 			{
-				int tempx = -weight / 2 + RightbarPos.x - RightbarWeight / 2;
-				b = 2 * tempx*a + b;
+				//TH da biet x
+				int tempx = -weight / 2 + RightbarPos.x - RightbarWeight / 2; // gan tam x
+				b = 2 * tempx*a + b;// tim b trong duong thang moi y= -ax +b'
 				a = -a;
-				v = -v;
+				v = -v; //do va cham phai lam x giam nen v doi dau
 			}
 		}
 }
 void ball::conlisionLeftbar(pos LeftbarPos, float LeftbarHeight, float LeftbarWeight)
 {
+	//xet xem ben trai cua trai banh co nho hon ben phai cua thanh trai hay ko
 	if (p.x - weight / 2 < LeftbarPos.x + LeftbarWeight / 2) {
 		if (p.y + height / 2 > LeftbarPos.y - LeftbarHeight / 2 && p.y - height / 2 < LeftbarPos.y + LeftbarHeight / 2) {
+			//TH da biet x
 			int tempx = weight / 2 + LeftbarPos.x + LeftbarWeight / 2;
-			b = 2 * tempx*a + b;
+			b = 2 * tempx*a + b;// tim b trong duong thang moi y= -ax +b'
 			a = -a;
-			v = -v ;
+			v = -v ; // do va cham trai lam x tang nen v doi dau
 		}
 	}
 	
@@ -174,18 +184,22 @@ void ball::conlisionLeftbar(pos LeftbarPos, float LeftbarHeight, float LeftbarWe
 
 void ball::conlisionPaddle(pos PaddlePos, float PaddleHeight, float PaddleWeight)
 {
+	//xet xem toa do y  cua trai banh co nam giua do cao cua thanh truot hay ko
 	if (p.y + height / 2 > PaddlePos.y - PaddleHeight / 2 && p.y - height / 2 < PaddlePos.y + PaddleHeight) {
+		// xet xem toa do x co nam giua thanh truot hay ko
 		if (p.x + weight / 2 > PaddlePos.x - PaddleWeight / 2 && p.x - weight / 2 < PaddlePos.x + PaddleWeight / 2) {
-			int tempy = -height / 2 + PaddlePos.y - PaddleHeight / 2;
-			b = tempy * 2 - b;
+			// TH biet y
+			int tempy = -height / 2 + PaddlePos.y - PaddleHeight / 2; // gan tam y
+			b = tempy * 2 - b;// tim b trong duong thang moi y= -ax +b'
 			a = -a;
-			v = v*1.1;
+			v = v*1.1;  // tang van toc len 1.1
 		}
 	};
 }
 
 void ball::conlisionWall(pos WallPos, float WallHeight, float WallWeight)
 {
+	// xet va cham tren duoi trai phai giong nhu va cham voi top left right bottom right bar
 	//va cham tren
 	if (p.y + height / 2 > WallPos.y - WallHeight / 2 && p.y + height / 2 < WallPos.y + WallHeight / 2) {
 		if (p.x  > WallPos.x - WallWeight / 2 && p.x  < WallPos.x + WallWeight / 2) {
@@ -226,6 +240,7 @@ void ball::conlisionWall(pos WallPos, float WallHeight, float WallWeight)
 
 bool ball::conlisionBrick(pos BrickPos, float BrickHeight, float BrickWeight)
 {
+	// xet va cham tren duoi trai phai giong nhu va cham voi top left right bottom right bar
 	//va cham tren
 	if (p.y + height / 2 > BrickPos.y - BrickHeight / 2 && p.y + height / 2 < BrickPos.y + BrickHeight / 2) {
 		if (p.x > BrickPos.x - BrickWeight / 2 && p.x < BrickPos.x + BrickWeight / 2) {

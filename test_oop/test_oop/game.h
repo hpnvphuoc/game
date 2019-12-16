@@ -16,15 +16,14 @@
 using namespace sf;
 class game
 {
-	Menu main_Menu;
-	info about_info;
-	vector<object*> objArr;
-	vector<player> HighScore;
-	vector<item>Listof_Item;
-	player PLAYER;
-	int checkScreen ;
-	float time;
-	int round;
+	Menu main_Menu; // hien man hinh menu chinh
+	info about_info; // hien instructor
+	vector<object*> objArr; // cac object trong game
+	vector<player> HighScore; // hien highscore
+	player PLAYER; // player dang choi
+	int checkScreen ; // check xem dang o man hinh nao
+	float time;           // time cua game
+	int round; // check man choi
 public:
 	void init();// khoi tao game
 	void run(); // chay game 
@@ -61,8 +60,9 @@ public:
 	void addScoreUpItem();
 	void addScoreDownItem();
 	void GenerateItem();
+	/////
 	void SortHighScore();//sap xep diem cua nguoi choi
-	void Instruction();
+	void Instruction(); // huong dan game
 
 	//constrcutor destructor
 	game();

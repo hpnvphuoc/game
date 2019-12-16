@@ -100,7 +100,9 @@ void paddle::PaddleAutoMove(vector<object*>& list, player& PLAYER, float time)
 
 void paddle::moveLeft()
 {
+	//tang px de paddle di chuyen qua trai
 	p.x = p.x - 15;
+	// neu qua bien thi xet lai bang bien
 	if (p.x - this->weight / 2 < 0 ) {
 		p.x =  this->weight / 2;
 	}
@@ -108,7 +110,9 @@ void paddle::moveLeft()
 
 void paddle::moveRight()
 {
+	//tang px de paddle di chuyen qua phai
 	p.x = p.x + 15;
+	// neu qua bien thi xet lai bang bien
 	if (p.x + this->weight / 2 > 600) {
 		p.x = 600 - this->weight / 2;
 	}

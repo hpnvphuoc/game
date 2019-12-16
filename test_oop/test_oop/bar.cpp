@@ -35,7 +35,8 @@ string bar::getObjectName()
 {
 	//lay obj name dua tren igmlink
 	string tempObjName="";
-	bool checkName = false;
+	bool checkName = false; 
+	// cat chuoi tu ki tu '/' den ki tu '.' 
 	for (int i = 0; i < this->imgLink.length(); i++) {
 		if (this->imgLink[i] == '.') {
 			return tempObjName;
